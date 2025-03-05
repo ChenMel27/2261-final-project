@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        ".fantomasignore": "ignore",
+        "stdlib.h": "c",
+        "player.h": "c",
+        "logic.h": "c",
+        "stdio.h": "c",
+        "start.h": "c",
+        "game.h": "c",
+        "hold.h": "c",
+        "stronger.h": "c",
+        "sloper.h": "c",
+        "foreground.h": "c",
+        "background.h": "c"
+    }
+}
