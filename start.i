@@ -59,7 +59,7 @@ void drawString4(int x, int y, char* str, u8 colorIndex);
 
 
 void goToStart();
-void drawStartScreen();
+void drawDialouge();
 
 int startPage;
 # 4 "start.c" 2
@@ -76,7 +76,7 @@ void goToStart() {
     startPage = 0;
 }
 
-void drawStartScreen() {
+void drawDialouge() {
     fillScreen4(0);
 
     if (startPage == 0) {

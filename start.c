@@ -10,7 +10,7 @@ void goToStart() {
     startPage = 0;
 }
 
-void drawStartScreen() {
+void drawDialouge() {
     fillScreen4(0);
 
     if (startPage == 0) {
@@ -37,7 +37,7 @@ void drawStartScreen() {
     } else if (startPage == 6) {
         drawString4(5, 10, "Let's begin. Here are your items.", 1);
         if (BUTTON_PRESSED(BUTTON_START)) {
-            goToPhaseOne();
+            goToPhaseOne();  // transition to gameplay (Phase One)
         }
     }
 

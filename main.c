@@ -7,9 +7,11 @@
 #include "gameState.h"
 #include "phaseOne.h"
 #include "player.h"
+#include "startPhase.h"
+#include "start.h"  // for dialogue functions
 
 unsigned short buttons, oldButtons;
-int state;
+GameState state; // use our enum type
 
 int main() {
     initialize();
@@ -19,27 +21,21 @@ int main() {
         buttons = REG_BUTTONS;
 
         switch(state) {
-            case START:
-                drawStartScreen();
+            case START_PHASE:
+                startPhaseState();  // update and draw the start phase screen
+                // When the player presses START on the start phase, switch to dialogue.
+                if (BUTTON_PRESSED(BUTTON_START)) {
+                    goToStart();  // from start.c: sets up dialogue mode (MODE4)
+                    state = DIALOGUE;
+                }
+                break;
+            case DIALOGUE:
+                drawDialouge();  // from start.c: shows dialogue pages, then eventually calls goToPhaseOne()
                 break;
             case PHASEONE:
-                phaseOneState();
+                phaseOneState();  // from phaseOne.c: update gameplay
                 break;
-            case PHASETWO:
-                updateGame();
-                break;
-            case PHASETHREE:
-                updateGame();
-                break;
-            case PAUSE:
-                drawPauseScreen();
-                break;
-            case WIN:
-                drawWinScreen();
-                break;
-            case LOSE:
-                drawLoseScreen();
-                break;
+            // Additional cases...
         }
 
         waitForVBlank();
@@ -48,52 +44,9 @@ int main() {
 
 void initialize() {
     mgba_open();
-    goToStart();
+    goToStartPhase();  // sets up the start phase screen using snowtiles and townMap
     initPlayer();
-    DMANow(3, tilesetOnePal, BG_PALETTE, tilesetOnePalLen / 2);
-    DMANow(3, tilesetOneTiles, &CHARBLOCK[0], tilesetOneTilesLen); 
-}
-
-// --- GAME STATES ---
-void updateGame() {
-    // Update player logic, camera, collisions, etc.
-}
-
-void goToPhaseTwo() {
-    REG_DISPCTL = MODE(0) | BG_ENABLE(0) | BG_ENABLE(1);
-    state = PHASETWO;
-}
-
-void goToPhaseThree() {
-    REG_DISPCTL = MODE(0) | BG_ENABLE(0) | BG_ENABLE(1);
-    state = PHASETHREE;
-}
-
-void drawPauseScreen() {
-    REG_DISPCTL = MODE(4) | BG_ENABLE(2);
-    fillScreen4(0);
-}
-
-void goToPause() {
-    REG_DISPCTL = MODE(0) | BG_ENABLE(0) | BG_ENABLE(1);
-    state = PAUSE;
-}
-
-void drawLoseScreen() {
-    REG_DISPCTL = MODE(4) | BG_ENABLE(2);
-    fillScreen4(GREEN);
-}
-
-void goToLose() {
-    drawLoseScreen();
-    state = LOSE;
-}
-
-void drawWinScreen() {
-    // Draw win screen and celebration
-}
-
-void goToWin() {
-    REG_DISPCTL = MODE(0) | BG_ENABLE(0) | BG_ENABLE(1);
-    state = WIN;
+    // Removed the following DMANow calls because they were overwriting your start phase palette/tiles:
+    // DMANow(3, tilesetOnePal, BG_PALETTE, tilesetOnePalLen / 2);
+    // DMANow(3, tilesetOneTiles, &CHARBLOCK[0], tilesetOneTilesLen);
 }

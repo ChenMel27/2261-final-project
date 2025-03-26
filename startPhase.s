@@ -8,78 +8,79 @@
 	.eabi_attribute 30, 2
 	.eabi_attribute 34, 0
 	.eabi_attribute 18, 4
-	.file	"phaseOne.c"
+	.file	"startPhase.c"
 	.text
 	.align	2
-	.global	goToPhaseOne
+	.global	goToStartPhase
 	.arch armv4t
 	.syntax unified
 	.arm
 	.fpu softvfp
-	.type	goToPhaseOne, %function
-goToPhaseOne:
+	.type	goToStartPhase, %function
+goToStartPhase:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	mov	r2, #67108864
-	mov	r3, #4352
-	mov	r1, #21504
+	mov	r3, #4608
+	ldr	r1, .L4
 	push	{r4, lr}
 	mov	r0, #3
 	strh	r3, [r2]	@ movhi
-	ldr	r4, .L4
-	strh	r1, [r2, #8]	@ movhi
+	ldr	r4, .L4+4
+	strh	r1, [r2, #10]	@ movhi
 	mov	r3, #256
 	mov	r2, #83886080
-	ldr	r1, .L4+4
-	mov	lr, pc
-	bx	r4
-	mov	r3, #4096
-	mov	r2, #100663296
-	mov	r0, #3
 	ldr	r1, .L4+8
 	mov	lr, pc
 	bx	r4
+	mov	r3, #3840
 	mov	r0, #3
 	ldr	r2, .L4+12
 	ldr	r1, .L4+16
-	mov	r3, #2048
 	mov	lr, pc
 	bx	r4
-	ldr	r3, .L4+20
+	mov	r0, #3
+	ldr	r2, .L4+20
+	ldr	r1, .L4+24
+	mov	r3, #1024
+	mov	lr, pc
+	bx	r4
+	ldr	r3, .L4+28
 	mov	lr, pc
 	bx	r3
-	mov	r2, #2
-	mov	lr, #0
-	mov	r0, #96
-	ldr	r3, .L4+24
-	ldr	ip, .L4+28
-	ldr	r1, .L4+32
-	strb	r2, [r3]
-	str	lr, [ip]
-	str	r0, [r1]
+	mov	r3, #0
+	mov	r1, #96
+	ldr	r0, .L4+32
+	ldr	ip, .L4+36
+	ldr	r2, .L4+40
+	strb	r3, [r0]
+	str	r3, [ip]
+	str	r1, [r2]
 	pop	{r4, lr}
 	bx	lr
 .L5:
 	.align	2
 .L4:
+	.word	6020
 	.word	DMANow
-	.word	tilesetOnePal
-	.word	tilesetOneTiles
-	.word	100704256
-	.word	bgOneMap
+	.word	snowtilesPal
+	.word	100679680
+	.word	snowtilesTiles
+	.word	100710400
+	.word	townMap
 	.word	initPlayer
 	.word	state
 	.word	hOff
 	.word	vOff
-	.size	goToPhaseOne, .-goToPhaseOne
+	.size	goToStartPhase, .-goToStartPhase
 	.align	2
-	.global	phaseOneState
+	.global	startPhaseState
 	.syntax unified
 	.arm
 	.fpu softvfp
-	.type	phaseOneState, %function
-phaseOneState:
+	.type	startPhaseState, %function
+startPhaseState:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
@@ -94,8 +95,8 @@ phaseOneState:
 	mov	r3, #67108864
 	ldrh	r2, [r5]
 	ldrh	r1, [r4]
-	strh	r2, [r3, #16]	@ movhi
-	strh	r1, [r3, #18]	@ movhi
+	strh	r2, [r3, #20]	@ movhi
+	strh	r1, [r3, #22]	@ movhi
 	ldr	r2, .L8+12
 	mov	lr, pc
 	bx	r2
@@ -117,7 +118,5 @@ phaseOneState:
 	.word	drawPlayer
 	.word	DMANow
 	.word	shadowOAM
-	.size	phaseOneState, .-phaseOneState
-	.comm	vOff,4,4
-	.comm	hOff,4,4
+	.size	startPhaseState, .-startPhaseState
 	.ident	"GCC: (devkitARM release 53) 9.1.0"

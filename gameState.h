@@ -1,17 +1,17 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
-extern unsigned short buttons, oldButtons;
-extern int state;
-
-enum {
-    START,
-    PHASEONE,
+typedef enum {
+    START_PHASE,  // initial start phase screen (town/background with player)
+    DIALOGUE,     // dialogue/instruction pages (Mode 4)
+    PHASEONE,     // gameplay phase one
     PHASETWO,
     PHASETHREE,
     PAUSE,
     WIN,
     LOSE
-};
+} GameState;
+
+extern GameState state;
 
 #endif

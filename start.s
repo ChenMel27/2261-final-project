@@ -68,12 +68,12 @@ goToStart:
 	.ascii	"Let's begin. Here are your items.\000"
 	.text
 	.align	2
-	.global	drawStartScreen
+	.global	drawDialouge
 	.syntax unified
 	.arm
 	.fpu softvfp
-	.type	drawStartScreen, %function
-drawStartScreen:
+	.type	drawDialouge, %function
+drawDialouge:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
@@ -225,7 +225,7 @@ drawStartScreen:
 	.word	.LC8
 	.word	.LC9
 	.word	goToPhaseOne
-	.size	drawStartScreen, .-drawStartScreen
+	.size	drawDialouge, .-drawDialouge
 	.global	startPage
 	.bss
 	.align	2

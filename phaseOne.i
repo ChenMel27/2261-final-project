@@ -80,18 +80,18 @@ void phaseOneState();
 
 
 
-extern unsigned short buttons, oldButtons;
-extern int state;
-
-enum {
-    START,
+typedef enum {
+    START_PHASE,
+    DIALOGUE,
     PHASEONE,
     PHASETWO,
     PHASETHREE,
     PAUSE,
     WIN,
     LOSE
-};
+} GameState;
+
+extern GameState state;
 # 7 "phaseOne.c" 2
 # 1 "player.h" 1
 
@@ -159,14 +159,10 @@ typedef struct {
     u8 oamIndex;
 } SPRITE;
 # 6 "player.h" 2
-
-
-
-
-
-
+# 15 "player.h"
 extern SPRITE player;
 
+unsigned char colorAt(int x, int y);
 void initPlayer();
 void updatePlayer(int* hOff, int* vOff);
 void drawPlayer();
@@ -176,7 +172,7 @@ void drawPlayer();
 extern const unsigned short bgOneCMBitmap[65536];
 # 9 "phaseOne.c" 2
 
-extern int state;
+extern GameState state;
 int hOff, vOff;
 extern int sbb;
 
@@ -195,8 +191,6 @@ void goToPhaseOne() {
 
     state = PHASEONE;
 }
-
-
 
 void phaseOneState() {
     updatePlayer(&hOff, &vOff);

@@ -2,7 +2,7 @@
 #define START_H
 
 void goToStart();
-void drawStartScreen();
+void drawDialouge();
 
 int startPage;
 

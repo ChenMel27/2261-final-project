@@ -7,7 +7,7 @@
 #include "player.h"
 #include "bgOneCM.h"
 
-extern int state;
+extern GameState state;
 int hOff, vOff;
 extern int sbb;
 
@@ -27,14 +27,12 @@ void goToPhaseOne() {
     state = PHASEONE;
 }
 
-// phaseOne.c
-
 void phaseOneState() {
-    updatePlayer(&hOff, &vOff);  // Updates both player position and camera offsets
-    REG_BG0HOFF = hOff;         // Apply horizontal scrolling
-    REG_BG0VOFF = vOff;         // Apply vertical scrolling
+    updatePlayer(&hOff, &vOff);  // update player position and camera offsets
+    REG_BG0HOFF = hOff;          // apply horizontal scrolling
+    REG_BG0VOFF = vOff;          // apply vertical scrolling
 
-    drawPlayer();               // Update shadowOAM for the player
+    drawPlayer();                // update shadowOAM for the player
 
-    DMANow(3, shadowOAM, OAM, 512);  // Copy shadowOAM to OAM
+    DMANow(3, shadowOAM, OAM, 512);  // copy shadowOAM to OAM
 }
