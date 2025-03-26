@@ -110,8 +110,7 @@ typedef struct {
 } SPRITE;
 # 2 "sprites.c" 2
 
-
+OBJ_ATTR shadowOAM[128];
 void hideSprites() {
-
 
 }

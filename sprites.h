@@ -98,6 +98,7 @@ typedef struct {
     int y;
     int xVel;
     int yVel;
+    int worldX, worldY;
     int width;
     int height;
     int timeUntilNextFrame;

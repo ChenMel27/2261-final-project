@@ -11,6 +11,14 @@
         "stronger.h": "c",
         "sloper.h": "c",
         "foreground.h": "c",
-        "background.h": "c"
+        "background.h": "c",
+        "sprites.h": "c",
+        "bgonecm.h": "c",
+        "mode4.h": "c",
+        "mode0.h": "c",
+        "gba.h": "c",
+        "tilesetone.h": "c",
+        "phaseone.h": "c",
+        "gamestate.h": "c"
     }
 }
