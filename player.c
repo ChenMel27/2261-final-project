@@ -2,22 +2,19 @@
 #include "hiker.h"
 #include "gba.h"
 #include "mode0.h"
-#include "bgOneCM.h"  // your collision map
+#include "bgOneCM.h"
 
 // Animation variables
 int hikerFrameDelay = 4;
 int hikerFrameCounter = 0;
 int hikerFrame = 0;
-int hikerFrames[] = {12, 16, 20};  // Replace with your tile IDs for frames
+int hikerFrames[] = {12, 16, 20};
 extern int hOff, vOff;
 int isDucking = 0;
 SPRITE player;
 
-// Background screen block
+// Bg sbb
 int sbb = 20;
-
-// Define a horizontal velocity (if not already in your struct)
-#define HORIZONTAL_VELOCITY 1
 
 void initPlayer() {
     player.worldX = 0;
@@ -32,9 +29,7 @@ void initPlayer() {
     player.isAnimating = 1;
     player.direction = 0;
     player.active = 1;
-    
-    // Set horizontal and initial vertical velocities.
-    player.xVel = HORIZONTAL_VELOCITY;
+    player.xVel = 1;
     player.yVel = 0;
     
     DMANow(3, (void*) hikerPal, SPRITE_PAL, hikerPalLen / 2);
@@ -44,20 +39,19 @@ void initPlayer() {
 void updatePlayer(int* hOff, int* vOff) {
     player.isAnimating = 0;
     
-    // Set ducking state based on the DOWN button.
+    // Duck if button held down
     if (BUTTON_HELD(BUTTON_DOWN)) {
         isDucking = 1;
     } else {
         isDucking = 0;
     }
     
-    // Calculate the four corners of the player's hitbox:
+    // Four corners of the player for collision sprite
     int leftX = player.worldX;
     int rightX = player.worldX + player.width - 1;
     int topY = player.worldY;
     int bottomY = player.worldY + player.height - 1;
     
-    // --- Horizontal Movement ---
     if (BUTTON_HELD(BUTTON_LEFT)) {
         player.isAnimating = 1;
         if (player.worldX > 0 &&
@@ -75,18 +69,18 @@ void updatePlayer(int* hOff, int* vOff) {
         }
     }
     
-    // --- Vertical Movement ---
+    // Jump if up button pressed
     if (BUTTON_PRESSED(BUTTON_UP) && player.yVel == 0) {
-        player.yVel = -12; // jump velocity
+        player.yVel = -12;
     }
     
-    // Apply gravity.
+    // Gravity
     player.yVel += GRAVITY;
     if (player.yVel > TERMINAL_VELOCITY) {
         player.yVel = TERMINAL_VELOCITY;
     }
     
-    // Vertical movement: Move one pixel at a time.
+    // Vertical movement... move one pixel at a time
     if (player.yVel < 0) {
         for (int i = 0; i < -player.yVel; i++) {
             topY = player.worldY;
@@ -95,7 +89,7 @@ void updatePlayer(int* hOff, int* vOff) {
                 colorAt(rightX, topY - 1) != 0) {
                 player.worldY--;
             } else {
-                player.yVel = 0;  // hit a ceiling tile
+                player.yVel = 0;  // ceiling
                 break;
             }
         }
@@ -107,13 +101,13 @@ void updatePlayer(int* hOff, int* vOff) {
                 colorAt(rightX, bottomY + 1) != 0) {
                 player.worldY++;
             } else {
-                player.yVel = 0;  // landed on solid ground
+                player.yVel = 0;  // landed ground
                 break;
             }
         }
     }
     
-    // --- Animation Handling ---
+    // Animation
     hikerFrameCounter++;
     if (player.isAnimating && hikerFrameCounter > hikerFrameDelay) {
         hikerFrame = (hikerFrame + 1) % player.numFrames;
@@ -123,11 +117,11 @@ void updatePlayer(int* hOff, int* vOff) {
         hikerFrameCounter = 0;
     }
     
-    // --- Camera Centering ---
+    // Center the cam
     *hOff = player.worldX - (SCREENWIDTH / 2 - player.width / 2);
     *vOff = player.worldY - (SCREENHEIGHT / 2 - player.height / 2);
     
-    // Clamp camera to map boundaries.
+    // Camera clamped to map
     if (*hOff < 0) *hOff = 0;
     if (*vOff < 0) *vOff = 0;
     if (*hOff > MAPWIDTH - SCREENWIDTH) *hOff = MAPWIDTH - SCREENWIDTH;
@@ -138,13 +132,13 @@ void updatePlayer(int* hOff, int* vOff) {
 }
 
 void drawPlayer() {
-    // Compute the four corners of the player's hitbox.
+    // Four corners of the player
     int leftX   = player.worldX;
     int rightX  = player.worldX + player.width - 1;
     int topY    = player.worldY;
     int bottomY = player.worldY + player.height - 1;
     
-    // If any corner is over the "bad" tile (0x02), hide the sprite.
+    // If any corner is over the bad tile (0x02) hide the sprite
     if (colorAt(leftX, topY) == 0x02 ||
         colorAt(rightX, topY) == 0x02 ||
         colorAt(leftX, bottomY) == 0x02 ||
@@ -159,7 +153,7 @@ void drawPlayer() {
         shadowOAM[player.oamIndex].attr0 = ATTR0_Y(screenY) | ATTR0_REGULAR | ATTR0_4BPP | ATTR0_TALL;
         shadowOAM[player.oamIndex].attr1 = ATTR1_X(screenX) | ATTR1_LARGE;
         
-        // If ducking, use the duck tile (20,24); otherwise, use the regular animated frame.
+        // If ducking use the duck tile otherwise animate and use the regular animated frame
         if (isDucking) {
             shadowOAM[player.oamIndex].attr2 = ATTR2_TILEID(20, 24);
         } else {
@@ -171,8 +165,6 @@ void drawPlayer() {
     }
 }
 
-
 inline unsigned char colorAt(int x, int y) {
-    // Look up the color from your collision map.
     return ((unsigned char*) bgOneCMBitmap)[OFFSET(x, y, MAPWIDTH)];
 }

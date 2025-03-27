@@ -21,20 +21,16 @@ void goToPhaseOne() {
     DMANow(3, bgOneMap, &SCREENBLOCK[20], 2048);
 
     initPlayer();
-
     hOff = 0;
     vOff = MAX_VOFF;
-
     state = PHASEONE;
 }
 
 void phaseOneState() {
-    updatePlayer(&hOff, &vOff);  // update player position and camera offsets
-    REG_BG0HOFF = hOff;          // apply horizontal scrolling
-    REG_BG0VOFF = vOff;          // apply vertical scrolling
-
+    updatePlayer(&hOff, &vOff);
+    REG_BG0HOFF = hOff;
+    REG_BG0VOFF = vOff;
     shadowOAM[guide.oamIndex].attr0 = ATTR0_HIDE;
-    drawPlayer();                // update shadowOAM for the player
-
-    DMANow(3, shadowOAM, OAM, 512);  // copy shadowOAM to OAM
+    drawPlayer();
+    DMANow(3, shadowOAM, OAM, 512);
 }

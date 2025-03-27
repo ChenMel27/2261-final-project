@@ -1,26 +1,26 @@
 #include "startPhasePlayer.h"
 #include "gba.h"
 #include "mode0.h"
-#include "townCM.h"   // Collision map for town
-#include "hiker.h"    // Graphics resources for the player
+#include "townCM.h"
+#include "hiker.h"
 #include "sprites.h"
 
-// Animation variables for the start phase (for the start player)
+// Animation vars for the starting
 int startHikerFrameDelay = 4;
 int startHikerFrameCounter = 0;
 int startHikerFrame = 0;
-int startHikerFrames[] = {12, 16, 20};  // Replace these tile IDs as needed
+int startHikerFrames[] = {12, 16, 20};
 
-extern int hOff, vOff;  // defined elsewhere
+extern int hOff, vOff;
 
 // Define the sprites for the start phase
 SPRITE startPlayer;
 SPRITE guide;
 
-// Background screen block index (if used)
+// Bg screen block index
 extern int sbb;
 
-// Collision check function that uses the town collision map
+// Collision map function for the townCMBitmap
 inline unsigned char startColorAt(int x, int y) {
     return ((unsigned char*)townCMBitmap)[OFFSET(x, y, 512 / 2)];
 }
@@ -28,48 +28,45 @@ inline unsigned char startColorAt(int x, int y) {
 void initStartPlayer() {
     startPlayer.worldX = 0;
     startPlayer.worldY = 42;
-    startPlayer.x = SCREENWIDTH / 2 - 8;   // Center horizontally
-    startPlayer.y = SCREENHEIGHT / 2 - 8;    // Center vertically
+    startPlayer.x = SCREENWIDTH / 2 - 8;
+    startPlayer.y = SCREENHEIGHT / 2 - 8;
     startPlayer.width = 32;
     startPlayer.height = 64;
-    startPlayer.oamIndex = 0;              // Sprite slot 0
+    startPlayer.oamIndex = 0;
     startPlayer.numFrames = 3;
     startPlayer.currentFrame = 0;
     startPlayer.isAnimating = 1;
     startPlayer.direction = 0;
-    startPlayer.yVel = 0;  // initialize vertical velocity
+    startPlayer.yVel = 0;
 
     DMANow(3, (void*)hikerPal, SPRITE_PAL, hikerPalLen / 2);
     DMANow(3, (void*)hikerTiles, &CHARBLOCK[4], hikerTilesLen / 2);
 }
 
 void initGuideSprite() {
-    // Set an arbitrary world position for the guide sprite.
     guide.worldX = 10;
     guide.worldY = 166;
-    guide.width = 16;      // using a 16x16 size (adjust as needed)
-    guide.height = 16;
-    guide.oamIndex = 1;    // Use sprite slot 1 (startPlayer uses 0)
+    guide.width = 30;
+    guide.height = 50;
+    // Sprite uses 0
+    guide.oamIndex = 1;
     guide.numFrames = 1;
     guide.currentFrame = 0;
-    guide.isAnimating = 0; // static sprite, no animation
+    guide.isAnimating = 0;
     guide.direction = 0;
     guide.yVel = 0;
 }
 
 void updateStartPlayer(int* hOff, int* vOff) {
     startPlayer.isAnimating = 0;
-    
-    // Define movement speed (in pixels)
     int speed = 1;
     
-    // Compute the four corners of the player's hitbox.
+    // Four corners
     int leftX   = startPlayer.worldX;
     int rightX  = startPlayer.worldX + startPlayer.width - 1;
     int topY    = startPlayer.worldY;
     int bottomY = startPlayer.worldY + startPlayer.height - 1;
     
-    // Left movement: calculate new position and check top-left and bottom-left.
     if (BUTTON_HELD(BUTTON_LEFT)) {
         startPlayer.isAnimating = 1;
         int newX = startPlayer.worldX - speed;
@@ -80,7 +77,6 @@ void updateStartPlayer(int* hOff, int* vOff) {
         }
     }
     
-    // Right movement: calculate new position and check top-right and bottom-right.
     if (BUTTON_HELD(BUTTON_RIGHT)) {
         startPlayer.isAnimating = 1;
         int newX = startPlayer.worldX + speed;
@@ -91,7 +87,6 @@ void updateStartPlayer(int* hOff, int* vOff) {
         }
     }
     
-    // Up movement: calculate new position and check top-left and top-right.
     if (BUTTON_HELD(BUTTON_UP)) {
         startPlayer.isAnimating = 1;
         int newY = startPlayer.worldY - speed;
@@ -102,7 +97,6 @@ void updateStartPlayer(int* hOff, int* vOff) {
         }
     }
     
-    // Down movement: calculate new position and check bottom-left and bottom-right.
     if (BUTTON_HELD(BUTTON_DOWN)) {
         startPlayer.isAnimating = 1;
         int newY = startPlayer.worldY + speed;
@@ -123,7 +117,7 @@ void updateStartPlayer(int* hOff, int* vOff) {
         startHikerFrameCounter = 0;
     }
     
-    // Camera centering.
+    // Center the camera
     *hOff = startPlayer.worldX - (SCREENWIDTH / 2 - startPlayer.width / 2);
     *vOff = startPlayer.worldY - (SCREENHEIGHT / 2 - startPlayer.height / 2);
     
@@ -133,13 +127,12 @@ void updateStartPlayer(int* hOff, int* vOff) {
     if (*hOff > MAPWIDTH - SCREENWIDTH) *hOff = MAPWIDTH - SCREENWIDTH;
     if (*vOff > MAPHEIGHT - SCREENHEIGHT) *vOff = MAPHEIGHT - SCREENHEIGHT;
     
-    // Update screen block index (assumes map uses screenblocks 20–23).
+    // Update screen block index 20–23
     sbb = 20 + (*hOff / 256);
 }
 
 void updateGuideSprite() {
-    // For a static guide sprite, no update logic is needed.
-    // Add update logic here if you want it to animate or move.
+    // Add when I want to animate the guide
 }
 
 void drawStartPlayer() {
@@ -155,12 +148,10 @@ void drawGuideSprite() {
     int screenY = guide.worldY - vOff;
     shadowOAM[guide.oamIndex].attr0 = ATTR0_Y(screenY) | ATTR0_REGULAR | ATTR0_4BPP | ATTR0_TALL;
     shadowOAM[guide.oamIndex].attr1 = ATTR1_X(screenX) | ATTR1_LARGE | ATTR1_HFLIP;
-    // Draw the guide sprite using the tile located at t(24,14)
     shadowOAM[guide.oamIndex].attr2 = ATTR2_TILEID(24, 14);
 }
 
-// Checks if the start-phase player collides with the guide sprite
-// Returns 1 if there is a collision, 0 otherwise.
+// Checks collision with the guide sprite
 int checkPlayerGuideCollision() {
     return collision(
         startPlayer.worldX, startPlayer.worldY, startPlayer.width, startPlayer.height,

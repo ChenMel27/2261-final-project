@@ -8,7 +8,7 @@
 #include "phaseOne.h"
 #include "player.h"
 #include "startPhase.h"
-#include "start.h"  // for dialogue functions
+#include "start.h"
 #include "startPhasePlayer.h"
 
 unsigned short buttons, oldButtons;

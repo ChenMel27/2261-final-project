@@ -38,7 +38,8 @@ void drawDialouge() {
     } else if (startPage == 6) {
         drawString4(5, 60, "Let's begin.", 1);
         if (BUTTON_PRESSED(BUTTON_START)) {
-            goToPhaseOne();  // transition to gameplay (Phase One)
+            // After the dialogue ends, then go to the first phase of the game
+            goToPhaseOne();
         }
     }
     waitForVBlank();

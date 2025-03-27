@@ -4,7 +4,7 @@
 #include "bgOne.h"
 #include "phaseOne.h"
 #include "gameState.h"
-#include "startPhasePlayer.h"  // Use the start phase–specific player functions
+#include "startPhasePlayer.h"
 #include "town.h"
 #include "townCM.h"
 #include "snowtiles.h"
@@ -15,6 +15,8 @@ extern int hOff, vOff;
 extern int sbb;
 
 void goToStartPhase() {
+    // Background is a town where player will meet the guide and 
+    // get basic intro + early instructions
     REG_DISPCTL = MODE(0) | BG_ENABLE(1) | SPRITE_ENABLE;
     REG_BG1CNT = BG_CHARBLOCK(1) | BG_SCREENBLOCK(23) | BG_SIZE_SMALL | BG_8BPP;
 
@@ -32,12 +34,12 @@ void goToStartPhase() {
 }
 
 void startPhaseState() {
-    updateStartPlayer(&hOff, &vOff);  // update start-phase player position and camera offsets
-    REG_BG1HOFF = hOff;               // apply horizontal scrolling
-    REG_BG1VOFF = vOff;               // apply vertical scrolling
+    updateStartPlayer(&hOff, &vOff);
+    REG_BG1HOFF = hOff;
+    REG_BG1VOFF = vOff;
 
-    drawStartPlayer();                // update shadowOAM for the start-phase player
+    drawStartPlayer();
     drawGuideSprite();
-    DMANow(3, shadowOAM, OAM, 512);    // copy shadowOAM to OAM
+    DMANow(3, shadowOAM, OAM, 512);
 }
 

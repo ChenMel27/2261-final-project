@@ -2,6 +2,6 @@
 #define STARTPHASE_H
 
 void goToStartPhase();
-void drawStart();
+void startPhaseState();
 
 #endif

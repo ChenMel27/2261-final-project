@@ -9,8 +9,9 @@
 void initStartPlayer();
 void initGuideSprite();
 void updateStartPlayer(int* hOff, int* vOff);
+void updateGuideSprite();
 void drawStartPlayer();
 void drawGuideSprite();
 int checkPlayerGuideCollision();
 
-#endif // START_PHASE_PLAYER_H
+#endif
