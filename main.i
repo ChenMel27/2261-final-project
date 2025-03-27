@@ -199,6 +199,15 @@ void drawDialouge();
 
 int startPage;
 # 12 "main.c" 2
+# 1 "startPhasePlayer.h" 1
+# 9 "startPhasePlayer.h"
+void initStartPlayer();
+void initGuideSprite();
+void updateStartPlayer(int* hOff, int* vOff);
+void drawStartPlayer();
+void drawGuideSprite();
+int checkPlayerGuideCollision();
+# 13 "main.c" 2
 
 unsigned short buttons, oldButtons;
 GameState state;
@@ -214,7 +223,7 @@ int main() {
             case START_PHASE:
                 startPhaseState();
 
-                if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) {
+                if (checkPlayerGuideCollision()) {
                     goToStart();
                     state = DIALOGUE;
                 }
@@ -225,7 +234,6 @@ int main() {
             case PHASEONE:
                 phaseOneState();
                 break;
-
         }
 
         waitForVBlank();
@@ -235,8 +243,4 @@ int main() {
 void initialize() {
     mgba_open();
     goToStartPhase();
-    initPlayer();
-
-
-
 }

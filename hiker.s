@@ -33,7 +33,7 @@ hikerPal:
 	.short	16029
 	.short	6317
 	.short	10516
-	.short	32767
+	.short	143
 	.short	0
 	.short	0
 	.short	0
@@ -8863,6 +8863,11 @@ hikerTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	4096
+	.short	0
+	.short	24848
+	.short	0
+	.short	26209
 	.short	0
 	.short	0
 	.short	0
@@ -8871,19 +8876,14 @@ hikerTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
+	.short	4096
+	.short	273
+	.short	26129
+	.short	5734
+	.short	26214
+	.short	5734
+	.short	26214
+	.short	5734
 	.short	0
 	.short	0
 	.short	0
@@ -9364,54 +9364,53 @@ hikerTiles:
 	.short	0
 	.short	1
 	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
 	.short	4096
+	.short	26214
+	.short	24832
+	.short	26214
+	.short	26128
+	.short	26214
+	.short	26128
+	.short	26214
+	.short	26128
+	.short	26214
+	.short	26128
+	.short	26214
+	.short	24832
+	.short	26209
+	.short	24832
+	.short	26129
+	.short	26214
+	.short	4454
+	.short	26214
+	.short	358
+	.short	26214
+	.short	358
+	.short	26214
+	.short	358
+	.short	26214
+	.short	358
+	.short	26214
+	.short	4454
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	-2458
 	.short	0
-	.short	4096
-	.short	0
-	.short	-32512
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
-	.short	4096
-	.short	-30703
-	.short	-32496
-	.short	-26216
-	.short	-26239
-	.short	-26215
-	.short	-26216
-	.short	-26215
-	.short	-26215
-	.short	-26215
-	.short	-26215
-	.short	-26215
 	.short	0
 	.short	0
-	.short	4369
 	.short	0
-	.short	-30311
+	.short	0
+	.short	0
+	.short	0
+	.short	0
+	.short	0
 	.short	17
-	.short	-26215
-	.short	393
-	.short	-26215
-	.short	6297
-	.short	-26215
-	.short	-30311
-	.short	-26215
-	.short	-30311
-	.short	-26215
-	.short	-30567
+	.short	0
+	.short	367
 	.short	0
 	.short	0
 	.short	0
@@ -9422,11 +9421,12 @@ hikerTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
+	.short	0
+	.short	0
+	.short	0
+	.short	0
 	.short	0
 	.short	0
 	.short	0
@@ -9876,69 +9876,69 @@ hikerTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	0
-	.short	-32512
-	.short	0
-	.short	-32512
-	.short	0
 	.short	4352
+	.short	25073
 	.short	0
-	.short	4096
+	.short	8145
 	.short	0
-	.short	4096
-	.short	0
-	.short	4096
+	.short	5649
 	.short	0
 	.short	4352
 	.short	0
 	.short	0
-	.short	-26216
-	.short	-26215
-	.short	-30584
-	.short	-30311
-	.short	4369
-	.short	-32495
-	.short	4369
-	.short	-30584
-	.short	4591
-	.short	4369
-	.short	-273
-	.short	30705
-	.short	-239
-	.short	32542
-	.short	7952
-	.short	-481
-	.short	-26215
-	.short	-30583
-	.short	-30584
-	.short	6280
-	.short	4376
-	.short	4369
-	.short	-30584
-	.short	273
-	.short	4369
-	.short	475
-	.short	-21225
-	.short	437
-	.short	-24297
-	.short	2837
-	.short	-17633
-	.short	27
+	.short	0
+	.short	0
+	.short	0
+	.short	0
+	.short	0
+	.short	0
+	.short	26214
+	.short	-154
+	.short	26214
+	.short	-2458
+	.short	24934
+	.short	26209
+	.short	4454
+	.short	26214
+	.short	24849
+	.short	26209
+	.short	26128
+	.short	24854
+	.short	26128
+	.short	6422
+	.short	-3840
+	.short	-26351
+	.short	5743
+	.short	1
+	.short	28671
+	.short	22
+	.short	-154
+	.short	358
+	.short	26214
+	.short	5734
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	4454
+	.short	24849
+	.short	7958
+	.short	6553
+	.short	5873
+	.short	0
+	.short	0
+	.short	0
+	.short	0
+	.short	0
+	.short	0
 	.short	1
 	.short	0
+	.short	22
 	.short	0
+	.short	22
 	.short	0
+	.short	22
 	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
+	.short	22
 	.short	0
 	.short	0
 	.short	0
@@ -10405,53 +10405,53 @@ hikerTiles:
 	.short	0
 	.short	0
 	.short	7952
-	.short	4590
-	.short	-7919
-	.short	7905
-	.short	-7920
-	.short	-16111
+	.short	10496
+	.short	5648
+	.short	8448
+	.short	7952
+	.short	8448
+	.short	272
 	.short	4352
-	.short	23745
-	.short	-4336
-	.short	-30591
-	.short	-4592
-	.short	8833
-	.short	4368
-	.short	8833
-	.short	-4336
-	.short	8833
-	.short	23838
-	.short	1
-	.short	4577
 	.short	0
-	.short	26908
+	.short	24832
+	.short	0
+	.short	-8432
+	.short	0
+	.short	7440
+	.short	0
+	.short	24848
+	.short	-26222
+	.short	4561
+	.short	4386
+	.short	4381
+	.short	-10727
+	.short	6545
+	.short	7633
+	.short	6441
+	.short	8157
+	.short	4369
+	.short	4598
+	.short	24849
+	.short	4381
+	.short	24849
+	.short	5729
+	.short	24849
+	.short	358
+	.short	0
+	.short	5734
+	.short	0
+	.short	5734
+	.short	0
+	.short	26214
 	.short	1
-	.short	25117
+	.short	26214
 	.short	1
-	.short	8728
+	.short	26214
+	.short	1
+	.short	26214
 	.short	22
-	.short	8722
+	.short	26214
 	.short	22
-	.short	8594
-	.short	25
-	.short	-28382
-	.short	1
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
 	.short	0
 	.short	0
 	.short	0
@@ -10916,54 +10916,54 @@ hikerTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	-4592
-	.short	10625
-	.short	4369
-	.short	10625
-	.short	7905
-	.short	10369
-	.short	7921
-	.short	-32495
-	.short	7953
-	.short	6552
+	.short	4096
+	.short	24849
+	.short	4096
+	.short	24833
+	.short	4096
+	.short	24833
 	.short	4368
-	.short	-28008
+	.short	24849
+	.short	-4370
+	.short	4113
+	.short	7697
+	.short	273
 	.short	4352
-	.short	9009
+	.short	286
+	.short	-7936
+	.short	4591
+	.short	4454
+	.short	26129
+	.short	4374
+	.short	26209
+	.short	4374
+	.short	26214
+	.short	4369
+	.short	26209
 	.short	4352
-	.short	-26495
-	.short	4386
-	.short	1
-	.short	12690
-	.short	27
-	.short	4498
-	.short	27
-	.short	4760
-	.short	17
-	.short	4649
-	.short	24
-	.short	-28399
-	.short	24
-	.short	-32359
-	.short	24
+	.short	26129
+	.short	4096
+	.short	24849
+	.short	-7936
 	.short	4369
-	.short	4369
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
+	.short	-7936
+	.short	4590
+	.short	26214
+	.short	22
+	.short	26214
+	.short	358
+	.short	26214
+	.short	358
+	.short	26214
+	.short	5878
+	.short	26214
+	.short	5878
+	.short	24934
+	.short	8033
+	.short	26129
+	.short	5654
+	.short	24833
+	.short	4353
 	.short	0
 	.short	0
 	.short	0
@@ -11415,7 +11415,7 @@ hikerTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
+	.short	4096
 	.short	0
 	.short	4096
 	.short	0
@@ -11428,25 +11428,10 @@ hikerTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	-26239
-	.short	4369
-	.short	10641
-	.short	4369
-	.short	4369
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	-32495
-	.short	4505
-	.short	4370
+	.short	-12783
+	.short	7918
+	.short	-4895
+	.short	7918
 	.short	4369
 	.short	4369
 	.short	0
@@ -11459,16 +11444,31 @@ hikerTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	0
+	.short	4369
+	.short	4352
+	.short	-7697
+	.short	-16128
+	.short	7918
+	.short	-7920
+	.short	-4370
+	.short	4352
+	.short	4369
+	.short	0
+	.short	0
+	.short	0
+	.short	0
+	.short	0
+	.short	0
+	.short	4097
 	.short	0
 	.short	1
 	.short	0
+	.short	1
 	.short	0
+	.short	1
 	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
+	.short	1
 	.short	0
 	.short	0
 	.short	0

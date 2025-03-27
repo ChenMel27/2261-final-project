@@ -10,6 +10,7 @@
 extern GameState state;
 int hOff, vOff;
 extern int sbb;
+extern SPRITE guide;
 
 void goToPhaseOne() {
     REG_DISPCTL = MODE(0) | BG_ENABLE(0) | SPRITE_ENABLE;
@@ -32,6 +33,7 @@ void phaseOneState() {
     REG_BG0HOFF = hOff;          // apply horizontal scrolling
     REG_BG0VOFF = vOff;          // apply vertical scrolling
 
+    shadowOAM[guide.oamIndex].attr0 = ATTR0_HIDE;
     drawPlayer();                // update shadowOAM for the player
 
     DMANow(3, shadowOAM, OAM, 512);  // copy shadowOAM to OAM

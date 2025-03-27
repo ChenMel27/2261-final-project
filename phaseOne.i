@@ -175,6 +175,7 @@ extern const unsigned short bgOneCMBitmap[65536];
 extern GameState state;
 int hOff, vOff;
 extern int sbb;
+extern SPRITE guide;
 
 void goToPhaseOne() {
     (*(volatile unsigned short *)0x4000000) = ((0) & 7) | (1 << (8 + (0 % 4))) | (1 << 12);
@@ -197,6 +198,7 @@ void phaseOneState() {
     (*(volatile unsigned short*) 0x04000010) = hOff;
     (*(volatile unsigned short*) 0x04000012) = vOff;
 
+    shadowOAM[guide.oamIndex].attr0 = (2<<8);
     drawPlayer();
 
     DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);

@@ -41,42 +41,10 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -105,42 +73,10 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -169,10 +105,10 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -201,10 +137,10 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -233,10 +169,10 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -265,10 +201,10 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -297,10 +233,10 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -329,202 +265,234 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
 	.short	60
 	.short	60
 	.short	60
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
 	.short	11
 	.short	11
 	.short	11
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -553,10 +521,10 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -585,10 +553,10 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -617,10 +585,10 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -649,10 +617,10 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -681,10 +649,10 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -713,10 +681,10 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -745,77 +713,19 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
 	.short	11
 	.short	11
 	.short	11
@@ -841,13 +751,6 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
 	.short	11
 	.short	11
 	.short	11
@@ -873,67 +776,9 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
 	.short	11
 	.short	11
 	.short	11
@@ -944,28 +789,32 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	11
 	.short	11
 	.short	11
@@ -976,6 +825,157 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -1001,10 +1001,10 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60
@@ -1033,10 +1033,10 @@ townMap:
 	.short	11
 	.short	11
 	.short	11
-	.short	60
-	.short	60
-	.short	60
-	.short	60
+	.short	11
+	.short	11
+	.short	11
+	.short	11
 	.short	60
 	.short	60
 	.short	60

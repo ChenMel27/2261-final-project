@@ -49,11 +49,14 @@ goToStartPhase:
 	ldr	r3, .L4+28
 	mov	lr, pc
 	bx	r3
+	ldr	r3, .L4+32
+	mov	lr, pc
+	bx	r3
 	mov	r3, #0
 	mov	r1, #96
-	ldr	r0, .L4+32
-	ldr	ip, .L4+36
-	ldr	r2, .L4+40
+	ldr	r0, .L4+36
+	ldr	ip, .L4+40
+	ldr	r2, .L4+44
 	strb	r3, [r0]
 	str	r3, [ip]
 	str	r1, [r2]
@@ -69,7 +72,8 @@ goToStartPhase:
 	.word	snowtilesTiles
 	.word	100710400
 	.word	townMap
-	.word	initPlayer
+	.word	initStartPlayer
+	.word	initGuideSprite
 	.word	state
 	.word	hOff
 	.word	vOff
@@ -100,11 +104,14 @@ startPhaseState:
 	ldr	r2, .L8+12
 	mov	lr, pc
 	bx	r2
-	ldr	r4, .L8+16
+	ldr	r3, .L8+16
+	mov	lr, pc
+	bx	r3
+	ldr	r4, .L8+20
 	mov	r3, #512
 	mov	r2, #117440512
 	mov	r0, #3
-	ldr	r1, .L8+20
+	ldr	r1, .L8+24
 	mov	lr, pc
 	bx	r4
 	pop	{r4, r5, r6, lr}
@@ -114,8 +121,9 @@ startPhaseState:
 .L8:
 	.word	vOff
 	.word	hOff
-	.word	updatePlayer
-	.word	drawPlayer
+	.word	updateStartPlayer
+	.word	drawStartPlayer
+	.word	drawGuideSprite
 	.word	DMANow
 	.word	shadowOAM
 	.size	startPhaseState, .-startPhaseState

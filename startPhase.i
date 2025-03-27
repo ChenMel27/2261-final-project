@@ -93,11 +93,36 @@ typedef enum {
 
 extern GameState state;
 # 7 "startPhase.c" 2
-# 1 "player.h" 1
+# 1 "startPhasePlayer.h" 1
+# 9 "startPhasePlayer.h"
+void initStartPlayer();
+void initGuideSprite();
+void updateStartPlayer(int* hOff, int* vOff);
+void drawStartPlayer();
+void drawGuideSprite();
+int checkPlayerGuideCollision();
+# 8 "startPhase.c" 2
+# 1 "town.h" 1
 
 
 
 
+
+
+
+extern const unsigned short townMap[1024];
+# 9 "startPhase.c" 2
+# 1 "townCM.h" 1
+# 20 "townCM.h"
+extern const unsigned short townCMBitmap[32768];
+# 10 "startPhase.c" 2
+# 1 "snowtiles.h" 1
+# 21 "snowtiles.h"
+extern const unsigned char snowtilesTiles[7680];
+
+
+extern const unsigned char snowtilesPal[512];
+# 11 "startPhase.c" 2
 # 1 "sprites.h" 1
 # 10 "sprites.h"
 typedef struct {
@@ -158,39 +183,6 @@ typedef struct {
     int numFrames;
     u8 oamIndex;
 } SPRITE;
-# 6 "player.h" 2
-# 15 "player.h"
-extern SPRITE player;
-
-unsigned char colorAt(int x, int y);
-void initPlayer();
-void updatePlayer(int* hOff, int* vOff);
-void drawPlayer();
-# 8 "startPhase.c" 2
-# 1 "bgOneCM.h" 1
-# 20 "bgOneCM.h"
-extern const unsigned short bgOneCMBitmap[65536];
-# 9 "startPhase.c" 2
-# 1 "town.h" 1
-
-
-
-
-
-
-
-extern const unsigned short townMap[1024];
-# 10 "startPhase.c" 2
-# 1 "townCM.h" 1
-# 20 "townCM.h"
-extern const unsigned short townCMBitmap[32768];
-# 11 "startPhase.c" 2
-# 1 "snowtiles.h" 1
-# 21 "snowtiles.h"
-extern const unsigned char snowtilesTiles[7680];
-
-
-extern const unsigned char snowtilesPal[512];
 # 12 "startPhase.c" 2
 
 extern GameState state;
@@ -205,7 +197,8 @@ void goToStartPhase() {
     DMANow(3, snowtilesTiles, &((CB*) 0x6000000)[1], 7680 / 2);
     DMANow(3, townMap, &((SB*) 0x6000000)[23], (2048) / 2);
 
-    initPlayer();
+    initStartPlayer();
+    initGuideSprite();
 
     hOff = 0;
     vOff = (256 - 160);
@@ -213,13 +206,12 @@ void goToStartPhase() {
     state = START_PHASE;
 }
 
-
 void startPhaseState() {
-    updatePlayer(&hOff, &vOff);
+    updateStartPlayer(&hOff, &vOff);
     (*(volatile unsigned short*) 0x04000014) = hOff;
     (*(volatile unsigned short*) 0x04000016) = vOff;
 
-    drawPlayer();
-
+    drawStartPlayer();
+    drawGuideSprite();
     DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);
 }

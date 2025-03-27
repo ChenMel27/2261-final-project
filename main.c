@@ -9,6 +9,7 @@
 #include "player.h"
 #include "startPhase.h"
 #include "start.h"  // for dialogue functions
+#include "startPhasePlayer.h"
 
 unsigned short buttons, oldButtons;
 GameState state; // use our enum type
@@ -24,7 +25,7 @@ int main() {
             case START_PHASE:
                 startPhaseState();  // update and draw the start phase screen
                 // When the player presses START on the start phase, switch to dialogue.
-                if (BUTTON_PRESSED(BUTTON_START)) {
+                if (checkPlayerGuideCollision()) {
                     goToStart();  // from start.c: sets up dialogue mode (MODE4)
                     state = DIALOGUE;
                 }
@@ -35,7 +36,6 @@ int main() {
             case PHASEONE:
                 phaseOneState();  // from phaseOne.c: update gameplay
                 break;
-            // Additional cases...
         }
 
         waitForVBlank();
@@ -44,9 +44,5 @@ int main() {
 
 void initialize() {
     mgba_open();
-    goToStartPhase();  // sets up the start phase screen using snowtiles and townMap
-    initPlayer();
-    // Removed the following DMANow calls because they were overwriting your start phase palette/tiles:
-    // DMANow(3, tilesetOnePal, BG_PALETTE, tilesetOnePalLen / 2);
-    // DMANow(3, tilesetOneTiles, &CHARBLOCK[0], tilesetOneTilesLen);
+    goToStartPhase();
 }

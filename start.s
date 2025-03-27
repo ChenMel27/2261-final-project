@@ -32,13 +32,13 @@ goToStart:
 .L4:
 	.align	2
 .L3:
-	.word	1028
+	.word	1044
 	.word	.LANCHOR0
 	.size	goToStart, .-goToStart
 	.section	.rodata.str1.4,"aMS",%progbits,1
 	.align	2
 .LC0:
-	.ascii	"Walk up and collide with villager\000"
+	.ascii	"Hello...\000"
 	.align	2
 .LC1:
 	.ascii	"You are here to summit mount rainier...\000"
@@ -65,7 +65,7 @@ goToStart:
 	.ascii	"to Camp Muir...\000"
 	.align	2
 .LC9:
-	.ascii	"Let's begin. Here are your items.\000"
+	.ascii	"Let's begin.\000"
 	.text
 	.align	2
 	.global	drawDialouge
@@ -77,13 +77,16 @@ drawDialouge:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-	push	{r4, r5, r6, lr}
+	push	{r4, r5, r6, r7, r8, lr}
 	ldr	r5, .L57
+	ldr	r6, .L57+4
+	mov	lr, pc
+	bx	r5
 	mov	r0, #0
-	ldr	r3, .L57+4
+	ldr	r3, .L57+8
 	mov	lr, pc
 	bx	r3
-	ldr	r4, [r5]
+	ldr	r4, [r6]
 	cmp	r4, #0
 	beq	.L50
 	cmp	r4, #1
@@ -99,20 +102,19 @@ drawDialouge:
 	cmp	r4, #6
 	beq	.L56
 .L8:
-	ldr	r3, .L57+8
 	mov	lr, pc
-	bx	r3
+	bx	r5
 	ldr	r3, .L57+12
 	mov	lr, pc
 	bx	r3
-	pop	{r4, r5, r6, lr}
+	pop	{r4, r5, r6, r7, r8, lr}
 	bx	lr
 .L50:
 	mov	r3, #1
+	mov	r1, #60
+	mov	r0, #7
 	ldr	r2, .L57+16
 .L49:
-	mov	r1, #10
-	mov	r0, #5
 	ldr	r4, .L57+20
 .L47:
 	mov	lr, pc
@@ -125,14 +127,14 @@ drawDialouge:
 	ldr	r3, .L57+28
 	ldrh	r3, [r3]
 	tst	r3, #8
-	ldreq	r3, [r5]
+	ldreq	r3, [r6]
 	addeq	r3, r3, #1
-	streq	r3, [r5]
+	streq	r3, [r6]
 	b	.L8
 .L52:
 	mov	r3, #1
 	ldr	r2, .L57+32
-	mov	r1, #10
+	mov	r1, #55
 	mov	r0, #5
 	ldr	r4, .L57+20
 	mov	lr, pc
@@ -140,12 +142,12 @@ drawDialouge:
 	mov	r3, #1
 	ldr	r2, .L57+36
 .L45:
-	mov	r1, #20
+	mov	r1, #65
 	mov	r0, #5
 	b	.L47
 .L51:
 	mov	r3, r4
-	mov	r1, #10
+	mov	r1, #60
 	mov	r0, #5
 	ldr	r2, .L57+40
 	ldr	r4, .L57+20
@@ -153,7 +155,7 @@ drawDialouge:
 .L53:
 	mov	r3, #1
 	ldr	r2, .L57+44
-	mov	r1, #10
+	mov	r1, #55
 	mov	r0, #5
 	ldr	r4, .L57+20
 	mov	lr, pc
@@ -163,22 +165,24 @@ drawDialouge:
 	b	.L45
 .L54:
 	mov	r3, #1
+	mov	r1, #60
+	mov	r0, #5
 	ldr	r2, .L57+52
 	b	.L49
 .L55:
 	mov	r3, #1
-	mov	r1, #10
+	mov	r1, #55
 	mov	r0, r4
 	ldr	r2, .L57+56
-	ldr	r6, .L57+20
+	ldr	r7, .L57+20
 	mov	lr, pc
-	bx	r6
+	bx	r7
 	mov	r3, #1
 	mov	r0, r4
-	mov	r1, #20
+	mov	r1, #65
 	ldr	r2, .L57+60
 	mov	lr, pc
-	bx	r6
+	bx	r7
 	ldr	r3, .L57+24
 	ldrh	r3, [r3]
 	tst	r3, #8
@@ -186,7 +190,7 @@ drawDialouge:
 	b	.L37
 .L56:
 	mov	r3, #1
-	mov	r1, #10
+	mov	r1, #60
 	mov	r0, #5
 	ldr	r2, .L57+64
 	ldr	r4, .L57+20
@@ -207,10 +211,10 @@ drawDialouge:
 .L58:
 	.align	2
 .L57:
+	.word	waitForVBlank
 	.word	.LANCHOR0
 	.word	fillScreen4
 	.word	flipPages
-	.word	waitForVBlank
 	.word	.LC0
 	.word	drawString4
 	.word	oldButtons

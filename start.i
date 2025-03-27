@@ -72,41 +72,41 @@ void phaseOneState();
 int startPage = 0;
 
 void goToStart() {
-    (*(volatile unsigned short *)0x4000000) = ((4) & 7) | (1 << (8 + (2 % 4)));
+    (*(volatile unsigned short *)0x4000000) = ((4) & 7) | (1 << (8 + (2 % 4))) | (1 << 4);
     startPage = 0;
 }
 
 void drawDialouge() {
+    waitForVBlank();
     fillScreen4(0);
 
     if (startPage == 0) {
-        drawString4(5, 10, "Walk up and collide with villager", 1);
+        drawString4(7, 60, "Hello...", 1);
         if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) startPage++;
     } else if (startPage == 1) {
-        drawString4(5, 10, "You are here to summit mount rainier...", 1);
+        drawString4(5, 60, "You are here to summit mount rainier...", 1);
         if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) startPage++;
     } else if (startPage == 2) {
-        drawString4(5, 10, "If you want to give", 1);
-        drawString4(5, 20, "survival your best shot...", 1);
+        drawString4(5, 55, "If you want to give", 1);
+        drawString4(5, 65, "survival your best shot...", 1);
         if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) startPage++;
     } else if (startPage == 3) {
-        drawString4(5, 10, "My name is Brady,", 1);
-        drawString4(5, 20, "I've led tours for 30 years...", 1);
+        drawString4(5, 55, "My name is Brady,", 1);
+        drawString4(5, 65, "I've led tours for 30 years...", 1);
         if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) startPage++;
     } else if (startPage == 4) {
-        drawString4(5, 10, "Three sections await with difficulty...", 1);
+        drawString4(5, 60, "Three sections await with difficulty...", 1);
         if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) startPage++;
     } else if (startPage == 5) {
-        drawString4(5, 10, "We begin with the Ascent", 1);
-        drawString4(5, 20, "to Camp Muir...", 1);
+        drawString4(5, 55, "We begin with the Ascent", 1);
+        drawString4(5, 65, "to Camp Muir...", 1);
         if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) startPage++;
     } else if (startPage == 6) {
-        drawString4(5, 10, "Let's begin. Here are your items.", 1);
+        drawString4(5, 60, "Let's begin.", 1);
         if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) {
             goToPhaseOne();
         }
     }
-
-    flipPages();
     waitForVBlank();
+    flipPages();
 }

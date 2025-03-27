@@ -30,70 +30,66 @@ main:
 	ldr	r3, .L13+4
 	mov	lr, pc
 	bx	r3
-	ldr	r3, .L13+8
-	mov	lr, pc
-	bx	r3
-	ldr	r5, .L13+12
-	ldr	r4, .L13+16
-	ldr	r6, .L13+20
-	ldr	fp, .L13+24
-	ldr	r10, .L13+28
-	ldr	r9, .L13+32
-	ldr	r8, .L13+36
-	ldr	r7, .L13+40
+	ldr	r8, .L13+8
+	ldr	r4, .L13+12
+	ldr	r5, .L13+16
+	ldr	fp, .L13+20
+	ldr	r10, .L13+24
+	ldr	r9, .L13+28
+	ldr	r7, .L13+32
+	ldr	r6, .L13+36
 	b	.L5
 .L12:
 	cmp	r3, #0
 	beq	.L11
 .L4:
 	mov	lr, pc
-	bx	r8
+	bx	r7
 .L5:
 	ldrh	r3, [r4]
-	strh	r3, [r5]	@ movhi
-	ldrb	r3, [r6]	@ zero_extendqisi2
-	ldrh	r2, [r7, #48]
+	strh	r3, [r8]	@ movhi
+	ldrb	r3, [r5]	@ zero_extendqisi2
+	ldrh	r2, [r6, #48]
 	cmp	r3, #1
 	strh	r2, [r4]	@ movhi
 	beq	.L2
 	cmp	r3, #2
 	bne	.L12
+	ldr	r3, .L13+40
 	mov	lr, pc
-	bx	r9
+	bx	r3
 	b	.L4
 .L2:
 	mov	lr, pc
-	bx	r10
+	bx	r9
 	b	.L4
 .L11:
 	mov	lr, pc
 	bx	fp
-	ldrh	r3, [r5]
-	tst	r3, #8
+	mov	lr, pc
+	bx	r10
+	cmp	r0, #0
 	beq	.L4
-	ldrh	r3, [r4]
-	tst	r3, #8
-	bne	.L4
 	ldr	r3, .L13+44
 	mov	lr, pc
 	bx	r3
 	mov	r3, #1
-	strb	r3, [r6]
+	strb	r3, [r5]
 	b	.L4
 .L14:
 	.align	2
 .L13:
 	.word	mgba_open
 	.word	goToStartPhase
-	.word	initPlayer
 	.word	oldButtons
 	.word	buttons
 	.word	state
 	.word	startPhaseState
+	.word	checkPlayerGuideCollision
 	.word	drawDialouge
-	.word	phaseOneState
 	.word	waitForVBlank
 	.word	67109120
+	.word	phaseOneState
 	.word	goToStart
 	.size	main, .-main
 	.text
@@ -114,9 +110,6 @@ initialize:
 	ldr	r3, .L17+4
 	mov	lr, pc
 	bx	r3
-	ldr	r3, .L17+8
-	mov	lr, pc
-	bx	r3
 	pop	{r4, lr}
 	bx	lr
 .L18:
@@ -124,7 +117,6 @@ initialize:
 .L17:
 	.word	mgba_open
 	.word	goToStartPhase
-	.word	initPlayer
 	.size	initialize, .-initialize
 	.comm	state,1,1
 	.comm	oldButtons,2,2

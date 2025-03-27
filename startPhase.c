@@ -4,11 +4,11 @@
 #include "bgOne.h"
 #include "phaseOne.h"
 #include "gameState.h"
-#include "player.h"
-#include "bgOneCM.h"
+#include "startPhasePlayer.h"  // Use the start phase–specific player functions
 #include "town.h"
 #include "townCM.h"
 #include "snowtiles.h"
+#include "sprites.h"
 
 extern GameState state;
 extern int hOff, vOff;
@@ -22,7 +22,8 @@ void goToStartPhase() {
     DMANow(3, snowtilesTiles, &CHARBLOCK[1], snowtilesTilesLen / 2);
     DMANow(3, townMap, &SCREENBLOCK[23], townLen / 2);
 
-    initPlayer();
+    initStartPlayer();
+    initGuideSprite();
 
     hOff = 0;
     vOff = MAX_VOFF;
@@ -30,13 +31,13 @@ void goToStartPhase() {
     state = START_PHASE;
 }
 
-
 void startPhaseState() {
-    updatePlayer(&hOff, &vOff);  // update player position and camera offsets
-    REG_BG1HOFF = hOff;          // apply horizontal scrolling
-    REG_BG1VOFF = vOff;          // apply vertical scrolling
+    updateStartPlayer(&hOff, &vOff);  // update start-phase player position and camera offsets
+    REG_BG1HOFF = hOff;               // apply horizontal scrolling
+    REG_BG1VOFF = vOff;               // apply vertical scrolling
 
-    drawPlayer();                // update shadowOAM for the player
-
-    DMANow(3, shadowOAM, OAM, 512);  // copy shadowOAM to OAM
+    drawStartPlayer();                // update shadowOAM for the start-phase player
+    drawGuideSprite();
+    DMANow(3, shadowOAM, OAM, 512);    // copy shadowOAM to OAM
 }
+

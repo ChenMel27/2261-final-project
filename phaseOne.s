@@ -85,25 +85,31 @@ phaseOneState:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}
 	ldr	r4, .L8
-	ldr	r5, .L8+4
+	ldr	r6, .L8+4
 	mov	r1, r4
-	mov	r0, r5
+	mov	r0, r6
 	ldr	r3, .L8+8
 	mov	lr, pc
 	bx	r3
 	mov	r3, #67108864
-	ldrh	r2, [r5]
-	ldrh	r1, [r4]
-	strh	r2, [r3, #16]	@ movhi
-	strh	r1, [r3, #18]	@ movhi
+	mov	r5, #512
+	ldrh	r1, [r6]
 	ldr	r2, .L8+12
-	mov	lr, pc
-	bx	r2
+	strh	r1, [r3, #16]	@ movhi
+	ldrb	r2, [r2, #52]	@ zero_extendqisi2
+	ldrh	r1, [r4]
 	ldr	r4, .L8+16
-	mov	r3, #512
+	lsl	r2, r2, #3
+	strh	r1, [r3, #18]	@ movhi
+	strh	r5, [r4, r2]	@ movhi
+	ldr	r3, .L8+20
+	mov	lr, pc
+	bx	r3
+	mov	r3, r5
+	mov	r1, r4
 	mov	r2, #117440512
+	ldr	r4, .L8+24
 	mov	r0, #3
-	ldr	r1, .L8+20
 	mov	lr, pc
 	bx	r4
 	pop	{r4, r5, r6, lr}
@@ -114,9 +120,10 @@ phaseOneState:
 	.word	vOff
 	.word	hOff
 	.word	updatePlayer
+	.word	guide
+	.word	shadowOAM
 	.word	drawPlayer
 	.word	DMANow
-	.word	shadowOAM
 	.size	phaseOneState, .-phaseOneState
 	.comm	vOff,4,4
 	.comm	hOff,4,4
