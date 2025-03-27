@@ -172,6 +172,7 @@ typedef struct {
     int isAnimating;
     int currentFrame;
     int numFrames;
+    int active;
     u8 oamIndex;
 } SPRITE;
 # 6 "player.h" 2

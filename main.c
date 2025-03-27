@@ -12,7 +12,7 @@
 #include "startPhasePlayer.h"
 
 unsigned short buttons, oldButtons;
-GameState state; // use our enum type
+GameState state;
 
 int main() {
     initialize();
@@ -23,18 +23,24 @@ int main() {
 
         switch(state) {
             case START_PHASE:
-                startPhaseState();  // update and draw the start phase screen
-                // When the player presses START on the start phase, switch to dialogue.
+            // Beginning phase top-down
+                startPhaseState();
+                /*
+                 * When player collides / meets the guide, then the dialouge
+                 * instructions appear.
+                 */
                 if (checkPlayerGuideCollision()) {
-                    goToStart();  // from start.c: sets up dialogue mode (MODE4)
+                    // Mode 4 dialogue
+                    goToStart();
                     state = DIALOGUE;
                 }
                 break;
             case DIALOGUE:
-                drawDialouge();  // from start.c: shows dialogue pages, then eventually calls goToPhaseOne()
+                drawDialouge();
                 break;
             case PHASEONE:
-                phaseOneState();  // from phaseOne.c: update gameplay
+            // First game phase side-scrolling
+                phaseOneState();
                 break;
         }
 

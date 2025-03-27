@@ -19,6 +19,8 @@
         "gba.h": "c",
         "tilesetone.h": "c",
         "phaseone.h": "c",
-        "gamestate.h": "c"
+        "gamestate.h": "c",
+        "towncm.h": "c",
+        "hiker.h": "c"
     }
 }

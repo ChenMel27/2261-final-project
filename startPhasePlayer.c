@@ -59,45 +59,61 @@ void initGuideSprite() {
 
 void updateStartPlayer(int* hOff, int* vOff) {
     startPlayer.isAnimating = 0;
-
-    // Left movement and collision checking
+    
+    // Define movement speed (in pixels)
+    int speed = 1;
+    
+    // Compute the four corners of the player's hitbox.
+    int leftX   = startPlayer.worldX;
+    int rightX  = startPlayer.worldX + startPlayer.width - 1;
+    int topY    = startPlayer.worldY;
+    int bottomY = startPlayer.worldY + startPlayer.height - 1;
+    
+    // Left movement: calculate new position and check top-left and bottom-left.
     if (BUTTON_HELD(BUTTON_LEFT)) {
         startPlayer.isAnimating = 1;
-        if (startPlayer.worldX > 0 &&
-            startColorAt(startPlayer.worldX - 1, startPlayer.worldY) != 0 &&
-            startColorAt(startPlayer.worldX - 1, startPlayer.worldY + startPlayer.height - 1) != 0) {
-            startPlayer.worldX--;
-        }
-    }
-    // Right movement and collision checking
-    if (BUTTON_HELD(BUTTON_RIGHT)) {
-        startPlayer.isAnimating = 1;
-        if (startPlayer.worldX < 32 * 8 - startPlayer.width &&
-            startColorAt(startPlayer.worldX + startPlayer.width, startPlayer.worldY) != 0 &&
-            startColorAt(startPlayer.worldX + startPlayer.width, startPlayer.worldY + startPlayer.height - 1) != 0) {
-            startPlayer.worldX++;
-        }
-    }
-    // Up movement and collision checking
-    if (BUTTON_HELD(BUTTON_UP)) {
-        startPlayer.isAnimating = 1;
-        if (startPlayer.worldY > 0 &&
-            startColorAt(startPlayer.worldX, startPlayer.worldY - 1) != 0 &&
-            startColorAt(startPlayer.worldX + startPlayer.width - 1, startPlayer.worldY - 1) != 0) {
-            startPlayer.worldY--;
-        }
-    }
-    // Down movement and collision checking
-    if (BUTTON_HELD(BUTTON_DOWN)) {
-        startPlayer.isAnimating = 1;
-        if (startPlayer.worldY < MAPHEIGHT - startPlayer.height &&
-            startColorAt(startPlayer.worldX, startPlayer.worldY + startPlayer.height + 1) != 0 &&
-            startColorAt(startPlayer.worldX + startPlayer.width - 1, startPlayer.worldY + startPlayer.height + 1) != 0) {
-            startPlayer.worldY++;
+        int newX = startPlayer.worldX - speed;
+        if (newX >= 0 &&
+            startColorAt(newX, topY) != 0 &&
+            startColorAt(newX, bottomY) != 0) {
+            startPlayer.worldX = newX;
         }
     }
     
-    // Animation handling for the start player
+    // Right movement: calculate new position and check top-right and bottom-right.
+    if (BUTTON_HELD(BUTTON_RIGHT)) {
+        startPlayer.isAnimating = 1;
+        int newX = startPlayer.worldX + speed;
+        if (startPlayer.worldX + startPlayer.width < MAPWIDTH &&
+            startColorAt(newX + startPlayer.width - 1, topY) != 0 &&
+            startColorAt(newX + startPlayer.width - 1, bottomY) != 0) {
+            startPlayer.worldX = newX;
+        }
+    }
+    
+    // Up movement: calculate new position and check top-left and top-right.
+    if (BUTTON_HELD(BUTTON_UP)) {
+        startPlayer.isAnimating = 1;
+        int newY = startPlayer.worldY - speed;
+        if (newY >= 0 &&
+            startColorAt(leftX, newY) != 0 &&
+            startColorAt(rightX, newY) != 0) {
+            startPlayer.worldY = newY;
+        }
+    }
+    
+    // Down movement: calculate new position and check bottom-left and bottom-right.
+    if (BUTTON_HELD(BUTTON_DOWN)) {
+        startPlayer.isAnimating = 1;
+        int newY = startPlayer.worldY + speed;
+        if (startPlayer.worldY < MAPHEIGHT - startPlayer.height &&
+            startColorAt(leftX, newY + startPlayer.height - 1) != 0 &&
+            startColorAt(rightX, newY + startPlayer.height - 1) != 0) {
+            startPlayer.worldY = newY;
+        }
+    }
+    
+    // Animation handling for the start player.
     startHikerFrameCounter++;
     if (startPlayer.isAnimating && startHikerFrameCounter > startHikerFrameDelay) {
         startHikerFrame = (startHikerFrame + 1) % startPlayer.numFrames;
@@ -106,24 +122,24 @@ void updateStartPlayer(int* hOff, int* vOff) {
         startHikerFrame = 0;
         startHikerFrameCounter = 0;
     }
-
-    // Camera centering
+    
+    // Camera centering.
     *hOff = startPlayer.worldX - (SCREENWIDTH / 2 - startPlayer.width / 2);
     *vOff = startPlayer.worldY - (SCREENHEIGHT / 2 - startPlayer.height / 2);
-
-    // Clamp camera to map boundaries
+    
+    // Clamp camera to map boundaries.
     if (*hOff < 0) *hOff = 0;
     if (*vOff < 0) *vOff = 0;
     if (*hOff > MAPWIDTH - SCREENWIDTH) *hOff = MAPWIDTH - SCREENWIDTH;
     if (*vOff > MAPHEIGHT - SCREENHEIGHT) *vOff = MAPHEIGHT - SCREENHEIGHT;
-
-    // Update screen block index (assumes map uses screenblocks 20–23)
+    
+    // Update screen block index (assumes map uses screenblocks 20–23).
     sbb = 20 + (*hOff / 256);
 }
 
 void updateGuideSprite() {
     // For a static guide sprite, no update logic is needed.
-    // If you want it to animate or move, add your update logic here.
+    // Add update logic here if you want it to animate or move.
 }
 
 void drawStartPlayer() {

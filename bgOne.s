@@ -547,34 +547,7 @@ bgOneMap:
 	.short	4
 	.short	4
 	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
+	.short	6
 	.short	4
 	.short	4
 	.short	4
@@ -607,6 +580,37 @@ bgOneMap:
 	.short	4
 	.short	4
 	.short	6
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
 	.short	6
 	.short	4
 	.short	4
@@ -620,10 +624,11 @@ bgOneMap:
 	.short	4
 	.short	4
 	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
 	.short	3
 	.short	3
 	.short	3
@@ -639,6 +644,37 @@ bgOneMap:
 	.short	3
 	.short	3
 	.short	6
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
 	.short	6
 	.short	3
 	.short	3
@@ -1004,100 +1040,6 @@ bgOneMap:
 	.short	3
 	.short	3
 	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
-	.short	4
 	.short	4
 	.short	4
 	.short	4
@@ -1618,6 +1560,37 @@ bgOneMap:
 	.short	4
 	.short	4
 	.short	6
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
 	.short	6
 	.short	4
 	.short	4
@@ -1648,46 +1621,73 @@ bgOneMap:
 	.short	4
 	.short	4
 	.short	4
+	.short	4
+	.short	4
+	.short	6
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	4
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
 	.short	3
 	.short	6
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
+	.short	3
 	.short	6
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
-	.short	3
 	.short	3
 	.short	3
 	.short	3

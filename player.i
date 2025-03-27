@@ -104,6 +104,7 @@ typedef struct {
     int isAnimating;
     int currentFrame;
     int numFrames;
+    int active;
     u8 oamIndex;
 } SPRITE;
 # 6 "player.h" 2
@@ -145,11 +146,15 @@ int hikerFrameDelay = 4;
 int hikerFrameCounter = 0;
 int hikerFrame = 0;
 int hikerFrames[] = {12, 16, 20};
-extern int hOff,vOff;
+extern int hOff, vOff;
+int isDucking = 0;
 SPRITE player;
 
 
 int sbb = 20;
+
+
+
 
 void initPlayer() {
     player.worldX = 0;
@@ -163,6 +168,11 @@ void initPlayer() {
     player.currentFrame = 0;
     player.isAnimating = 1;
     player.direction = 0;
+    player.active = 1;
+
+
+    player.xVel = 1;
+    player.yVel = 0;
 
     DMANow(3, (void*) hikerPal, ((u16 *)0x5000200), 512 / 2);
     DMANow(3, (void*) hikerTiles, &((CB*) 0x6000000)[4], 32768 / 2);
@@ -172,22 +182,36 @@ void updatePlayer(int* hOff, int* vOff) {
     player.isAnimating = 0;
 
 
+    if ((~(buttons) & ((1<<7)))) {
+        isDucking = 1;
+    } else {
+        isDucking = 0;
+    }
+
+
+    int leftX = player.worldX;
+    int rightX = player.worldX + player.width - 1;
+    int topY = player.worldY;
+    int bottomY = player.worldY + player.height - 1;
+
+
     if ((~(buttons) & ((1<<5)))) {
         player.isAnimating = 1;
         if (player.worldX > 0 &&
-            colorAt(player.worldX - 1, player.worldY) != 0 &&
-            colorAt(player.worldX - 1, player.worldY + player.height - 1) != 0) {
-            player.worldX--;
+            colorAt(leftX - player.xVel, topY) != 0 &&
+            colorAt(leftX - player.xVel, bottomY) != 0) {
+            player.worldX -= player.xVel;
         }
     }
     if ((~(buttons) & ((1<<4)))) {
         player.isAnimating = 1;
         if (player.worldX < 512 - player.width &&
-            colorAt(player.worldX + player.width, player.worldY) != 0 &&
-            colorAt(player.worldX + player.width, player.worldY + player.height - 1) != 0) {
-            player.worldX++;
+            colorAt(rightX + player.xVel, topY) != 0 &&
+            colorAt(rightX + player.xVel, bottomY) != 0) {
+            player.worldX += player.xVel;
         }
     }
+
 
     if ((!(~(oldButtons) & ((1<<6))) && (~(buttons) & ((1<<6)))) && player.yVel == 0) {
         player.yVel = -12;
@@ -199,28 +223,26 @@ void updatePlayer(int* hOff, int* vOff) {
         player.yVel = 4;
     }
 
-    if (player.yVel > 0) {
 
-        for (int i = 0; i < player.yVel; i++) {
-            int belowLeft = colorAt(player.worldX, player.worldY + player.height + 1);
-            int belowRight = colorAt(player.worldX + player.width - 1, player.worldY + player.height + 1);
-
-            if (belowLeft != 0 && belowRight != 0 &&
-                player.worldY < 256 - player.height) {
-                player.worldY++;
+    if (player.yVel < 0) {
+        for (int i = 0; i < -player.yVel; i++) {
+            topY = player.worldY;
+            if (topY - 1 >= 0 &&
+                colorAt(leftX, topY - 1) != 0 &&
+                colorAt(rightX, topY - 1) != 0) {
+                player.worldY--;
             } else {
                 player.yVel = 0;
                 break;
             }
         }
-    } else if (player.yVel < 0) {
-
-        for (int i = 0; i < -player.yVel; i++) {
-            int aboveLeft = colorAt(player.worldX, player.worldY - 1);
-            int aboveRight = colorAt(player.worldX + player.width - 1, player.worldY - 1);
-
-            if (aboveLeft != 0 && aboveRight != 0 && player.worldY > 0) {
-                player.worldY--;
+    } else if (player.yVel > 0) {
+        for (int i = 0; i < player.yVel; i++) {
+            bottomY = player.worldY + player.height - 1;
+            if (bottomY + 1 < 256 &&
+                colorAt(leftX, bottomY + 1) != 0 &&
+                colorAt(rightX, bottomY + 1) != 0) {
+                player.worldY++;
             } else {
                 player.yVel = 0;
                 break;
@@ -253,14 +275,41 @@ void updatePlayer(int* hOff, int* vOff) {
 }
 
 void drawPlayer() {
+
+    int leftX = player.worldX;
+    int rightX = player.worldX + player.width - 1;
+    int topY = player.worldY;
+    int bottomY = player.worldY + player.height - 1;
+
+
+    if (colorAt(leftX, topY) == 0x02 ||
+        colorAt(rightX, topY) == 0x02 ||
+        colorAt(leftX, bottomY) == 0x02 ||
+        colorAt(rightX, bottomY) == 0x02) {
+        player.active = 0;
+    }
+
     int screenX = player.worldX - hOff;
     int screenY = player.worldY - vOff;
 
-    shadowOAM[player.oamIndex].attr0 = ((screenY) & 0xFF) | (0<<8) | (0<<13) | (2<<14);
-    shadowOAM[player.oamIndex].attr1 = ((screenX) & 0x1FF) | (3<<14);
-    shadowOAM[player.oamIndex].attr2 = ((((15) * (32) + (hikerFrames[hikerFrame]))) & 0x3FF);
+    if (player.active) {
+        shadowOAM[player.oamIndex].attr0 = ((screenY) & 0xFF) | (0<<8) | (0<<13) | (2<<14);
+        shadowOAM[player.oamIndex].attr1 = ((screenX) & 0x1FF) | (3<<14);
+
+
+        if (isDucking) {
+            shadowOAM[player.oamIndex].attr2 = ((((24) * (32) + (20))) & 0x3FF);
+        } else {
+            shadowOAM[player.oamIndex].attr2 = ((((15) * (32) + (hikerFrames[hikerFrame]))) & 0x3FF);
+        }
+    } else {
+        shadowOAM[player.oamIndex].attr0 = (2<<8);
+        return;
+    }
 }
 
+
 inline unsigned char colorAt(int x, int y) {
+
     return ((unsigned char*) bgOneCMBitmap)[((y) * (512) + (x))];
 }

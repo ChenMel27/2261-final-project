@@ -106,6 +106,7 @@ typedef struct {
     int isAnimating;
     int currentFrame;
     int numFrames;
+    int active;
     u8 oamIndex; 
 } SPRITE;
 
