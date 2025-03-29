@@ -98,9 +98,13 @@ typedef enum {
     PHASETWO,
     PHASETHREE,
     PAUSE,
-    WIN,
     LOSE
 } GameState;
+
+void goToPause();
+void pause();
+void goToLose();
+void lose();
 
 extern GameState state;
 # 8 "main.c" 2
@@ -109,7 +113,7 @@ extern GameState state;
 void goToPhaseOne();
 void phaseOneState();
 # 9 "main.c" 2
-# 1 "player.h" 1
+# 1 "phaseOnePlayer.h" 1
 
 
 
@@ -175,8 +179,8 @@ typedef struct {
     int active;
     u8 oamIndex;
 } SPRITE;
-# 6 "player.h" 2
-# 15 "player.h"
+# 6 "phaseOnePlayer.h" 2
+# 15 "phaseOnePlayer.h"
 extern SPRITE player;
 
 unsigned char colorAt(int x, int y);
@@ -189,7 +193,7 @@ void drawPlayer();
 
 
 void goToStartPhase();
-void drawStart();
+void startPhaseState();
 # 11 "main.c" 2
 # 1 "start.h" 1
 
@@ -205,6 +209,7 @@ int startPage;
 void initStartPlayer();
 void initGuideSprite();
 void updateStartPlayer(int* hOff, int* vOff);
+void updateGuideSprite();
 void drawStartPlayer();
 void drawGuideSprite();
 int checkPlayerGuideCollision();
@@ -222,9 +227,14 @@ int main() {
 
         switch(state) {
             case START_PHASE:
+
                 startPhaseState();
 
+
+
+
                 if (checkPlayerGuideCollision()) {
+
                     goToStart();
                     state = DIALOGUE;
                 }
@@ -233,7 +243,22 @@ int main() {
                 drawDialouge();
                 break;
             case PHASEONE:
+
                 phaseOneState();
+                break;
+            case PHASETWO:
+
+                phaseTwoState();
+                break;
+            case PHASETHREE:
+
+                phaseThreeState();
+                break;
+            case PAUSE:
+                pause();
+                break;
+            case LOSE:
+                lose();
                 break;
         }
 
@@ -244,4 +269,36 @@ int main() {
 void initialize() {
     mgba_open();
     goToStartPhase();
+}
+
+void goToPause() {
+    state = PAUSE;
+}
+
+void pause() {
+
+    (*(volatile unsigned short *)0x4000000) = ((4) & 7) | (1 << (8 + (2 % 4)));
+    fillScreen4(0);
+
+
+    if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) {
+        goToStartPhase();
+        state = START_PHASE;
+    }
+}
+
+void goToLose() {
+    state = LOSE;
+}
+
+void lose() {
+
+    (*(volatile unsigned short *)0x4000000) = ((4) & 7) | (1 << (8 + (2 % 4)));
+    fillScreen4(0);
+
+
+    if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) {
+        goToStartPhase();
+        state = START_PHASE;
+    }
 }

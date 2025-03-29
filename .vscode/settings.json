@@ -22,6 +22,8 @@
         "gamestate.h": "c",
         "towncm.h": "c",
         "hiker.h": "c",
-        "startphaseplayer.h": "c"
+        "startphaseplayer.h": "c",
+        "phaseoneplayer.h": "c",
+        "bgone.h": "c"
     }
 }

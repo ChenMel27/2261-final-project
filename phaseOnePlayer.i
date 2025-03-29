@@ -1,8 +1,8 @@
-# 1 "player.c"
+# 1 "phaseOnePlayer.c"
 # 1 "<built-in>"
 # 1 "<command-line>"
-# 1 "player.c"
-# 1 "player.h" 1
+# 1 "phaseOnePlayer.c"
+# 1 "phaseOnePlayer.h" 1
 
 
 
@@ -45,7 +45,7 @@ typedef volatile struct {
 } DMAChannel;
 # 103 "gba.h"
 void DMANow(int channel, volatile void* src, volatile void* dest, unsigned int ctrl);
-# 5 "player.h" 2
+# 5 "phaseOnePlayer.h" 2
 # 1 "sprites.h" 1
 # 10 "sprites.h"
 typedef struct {
@@ -107,22 +107,22 @@ typedef struct {
     int active;
     u8 oamIndex;
 } SPRITE;
-# 6 "player.h" 2
-# 15 "player.h"
+# 6 "phaseOnePlayer.h" 2
+# 15 "phaseOnePlayer.h"
 extern SPRITE player;
 
 unsigned char colorAt(int x, int y);
 void initPlayer();
 void updatePlayer(int* hOff, int* vOff);
 void drawPlayer();
-# 2 "player.c" 2
+# 2 "phaseOnePlayer.c" 2
 # 1 "hiker.h" 1
 # 21 "hiker.h"
 extern const unsigned short hikerTiles[16384];
 
 
 extern const unsigned short hikerPal[256];
-# 3 "player.c" 2
+# 3 "phaseOnePlayer.c" 2
 
 # 1 "mode0.h" 1
 # 32 "mode0.h"
@@ -135,11 +135,11 @@ typedef struct {
 typedef struct {
  u16 tilemap[1024];
 } SB;
-# 5 "player.c" 2
+# 5 "phaseOnePlayer.c" 2
 # 1 "bgOneCM.h" 1
 # 20 "bgOneCM.h"
 extern const unsigned short bgOneCMBitmap[65536];
-# 6 "player.c" 2
+# 6 "phaseOnePlayer.c" 2
 
 
 int hikerFrameDelay = 4;
@@ -266,6 +266,11 @@ void updatePlayer(int* hOff, int* vOff) {
 
 
     sbb = 20 + (*hOff / 256);
+
+
+    if (player.worldX + player.width >= 512 - 1) {
+        goToPhaseTwo();
+    }
 }
 
 void drawPlayer() {

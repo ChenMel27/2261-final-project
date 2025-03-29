@@ -99,6 +99,7 @@ typedef struct {
     int y;
     int xVel;
     int yVel;
+    int worldX, worldY;
     int width;
     int height;
     int timeUntilNextFrame;
@@ -106,6 +107,7 @@ typedef struct {
     int isAnimating;
     int currentFrame;
     int numFrames;
+    int active;
     u8 oamIndex;
 } SPRITE;
 # 2 "sprites.c" 2

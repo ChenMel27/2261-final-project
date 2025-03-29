@@ -87,13 +87,17 @@ typedef enum {
     PHASETWO,
     PHASETHREE,
     PAUSE,
-    WIN,
     LOSE
 } GameState;
 
+void goToPause();
+void pause();
+void goToLose();
+void lose();
+
 extern GameState state;
 # 7 "phaseOne.c" 2
-# 1 "player.h" 1
+# 1 "phaseOnePlayer.h" 1
 
 
 
@@ -156,10 +160,11 @@ typedef struct {
     int isAnimating;
     int currentFrame;
     int numFrames;
+    int active;
     u8 oamIndex;
 } SPRITE;
-# 6 "player.h" 2
-# 15 "player.h"
+# 6 "phaseOnePlayer.h" 2
+# 15 "phaseOnePlayer.h"
 extern SPRITE player;
 
 unsigned char colorAt(int x, int y);
@@ -171,6 +176,11 @@ void drawPlayer();
 # 20 "bgOneCM.h"
 extern const unsigned short bgOneCMBitmap[65536];
 # 9 "phaseOne.c" 2
+# 1 "phaseOne.h" 1
+# 10 "phaseOne.h"
+void goToPhaseOne();
+void phaseOneState();
+# 10 "phaseOne.c" 2
 
 extern GameState state;
 int hOff, vOff;
@@ -186,10 +196,8 @@ void goToPhaseOne() {
     DMANow(3, bgOneMap, &((SB*) 0x6000000)[20], 2048);
 
     initPlayer();
-
     hOff = 0;
     vOff = (256 - 160);
-
     state = PHASEONE;
 }
 
@@ -197,9 +205,7 @@ void phaseOneState() {
     updatePlayer(&hOff, &vOff);
     (*(volatile unsigned short*) 0x04000010) = hOff;
     (*(volatile unsigned short*) 0x04000012) = vOff;
-
     shadowOAM[guide.oamIndex].attr0 = (2<<8);
     drawPlayer();
-
     DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);
 }

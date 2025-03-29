@@ -8,16 +8,16 @@
 	.eabi_attribute 30, 2
 	.eabi_attribute 34, 0
 	.eabi_attribute 18, 4
-	.file	"phaseOne.c"
+	.file	"phaseThree.c"
 	.text
 	.align	2
-	.global	goToPhaseOne
+	.global	goToPhaseThree
 	.arch armv4t
 	.syntax unified
 	.arm
 	.fpu softvfp
-	.type	goToPhaseOne, %function
-goToPhaseOne:
+	.type	goToPhaseThree, %function
+goToPhaseThree:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
@@ -72,14 +72,14 @@ goToPhaseOne:
 	.word	state
 	.word	hOff
 	.word	vOff
-	.size	goToPhaseOne, .-goToPhaseOne
+	.size	goToPhaseThree, .-goToPhaseThree
 	.align	2
-	.global	phaseOneState
+	.global	phaseThreeState
 	.syntax unified
 	.arm
 	.fpu softvfp
-	.type	phaseOneState, %function
-phaseOneState:
+	.type	phaseThreeState, %function
+phaseThreeState:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
@@ -124,7 +124,7 @@ phaseOneState:
 	.word	shadowOAM
 	.word	drawPlayer
 	.word	DMANow
-	.size	phaseOneState, .-phaseOneState
+	.size	phaseThreeState, .-phaseThreeState
 	.comm	vOff,4,4
 	.comm	hOff,4,4
 	.ident	"GCC: (devkitARM release 53) 9.1.0"

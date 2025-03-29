@@ -6,7 +6,7 @@
 #include "tilesetOne.h"
 #include "gameState.h"
 #include "phaseOne.h"
-#include "player.h"
+#include "phaseOnePlayer.h"
 #include "startPhase.h"
 #include "start.h"
 #include "startPhasePlayer.h"
@@ -42,6 +42,20 @@ int main() {
             // First game phase side-scrolling
                 phaseOneState();
                 break;
+            case PHASETWO:
+            // First game phase side-scrolling
+                phaseTwoState();
+                break;
+            case PHASETHREE:
+            // First game phase side-scrolling
+                phaseThreeState();
+                break;
+            case PAUSE:
+                pause();
+                break;
+            case LOSE:
+                lose();
+                break;
         }
 
         waitForVBlank();
@@ -52,3 +66,36 @@ void initialize() {
     mgba_open();
     goToStartPhase();
 }
+
+void goToPause() {
+    state = PAUSE;
+}
+
+void pause() {
+    // Mode 4
+    REG_DISPCTL = MODE(4) | BG_ENABLE(2);
+    fillScreen4(0);
+
+    // Resume game on START press
+    if (BUTTON_PRESSED(BUTTON_START)) {
+        goToStartPhase();
+        state = START_PHASE;
+    }
+}
+
+void goToLose() {
+    state = LOSE;
+}
+
+void lose() {
+    // Mode 4
+    REG_DISPCTL = MODE(4) | BG_ENABLE(2);
+    fillScreen4(0);
+
+    // Restart on START press
+    if (BUTTON_PRESSED(BUTTON_START)) {
+        goToStartPhase(); // Restart the game
+        state = START_PHASE;
+    }
+}
+

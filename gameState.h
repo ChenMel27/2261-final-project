@@ -8,9 +8,13 @@ typedef enum {
     PHASETWO,
     PHASETHREE,
     PAUSE,
-    WIN,
     LOSE
 } GameState;
+
+void goToPause();
+void pause();
+void goToLose();
+void lose();
 
 extern GameState state;
 

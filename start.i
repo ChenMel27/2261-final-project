@@ -104,6 +104,7 @@ void drawDialouge() {
     } else if (startPage == 6) {
         drawString4(5, 60, "Let's begin.", 1);
         if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) {
+
             goToPhaseOne();
         }
     }

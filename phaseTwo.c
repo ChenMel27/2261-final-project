@@ -6,14 +6,14 @@
 #include "gameState.h"
 #include "phaseOnePlayer.h"
 #include "bgOneCM.h"
-#include "phaseOne.h"
+#include "phaseTwo.h"
 
 extern GameState state;
 int hOff, vOff;
 extern int sbb;
 extern SPRITE guide;
 
-void goToPhaseOne() {
+void goToPhaseTwo() {
     REG_DISPCTL = MODE(0) | BG_ENABLE(0) | SPRITE_ENABLE;
     REG_BG0CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(20) | BG_SIZE_WIDE;
 
@@ -27,7 +27,7 @@ void goToPhaseOne() {
     state = PHASEONE;
 }
 
-void phaseOneState() {
+void phaseTwoState() {
     updatePlayer(&hOff, &vOff);
     REG_BG0HOFF = hOff;
     REG_BG0VOFF = vOff;

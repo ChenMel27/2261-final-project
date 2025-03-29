@@ -1,4 +1,4 @@
-#include "player.h"
+#include "phaseOnePlayer.h"
 #include "hiker.h"
 #include "gba.h"
 #include "mode0.h"
@@ -129,6 +129,11 @@ void updatePlayer(int* hOff, int* vOff) {
     
     // Update screen block index.
     sbb = 20 + (*hOff / 256);
+
+    // Check if player has reached the end of the map
+    if (player.worldX + player.width >= MAPWIDTH - 1) {
+        goToPhaseTwo();
+    }
 }
 
 void drawPlayer() {
@@ -160,8 +165,7 @@ void drawPlayer() {
             shadowOAM[player.oamIndex].attr2 = ATTR2_TILEID(hikerFrames[hikerFrame], 15);
         }
     } else {
-        shadowOAM[player.oamIndex].attr0 = ATTR0_HIDE;
-        return;
+        goToLose();
     }
 }
 

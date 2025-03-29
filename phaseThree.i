@@ -1,7 +1,7 @@
-# 1 "startPhase.c"
+# 1 "phaseThree.c"
 # 1 "<built-in>"
 # 1 "<command-line>"
-# 1 "startPhase.c"
+# 1 "phaseThree.c"
 # 1 "gba.h" 1
 
 
@@ -41,7 +41,7 @@ typedef volatile struct {
 } DMAChannel;
 # 103 "gba.h"
 void DMANow(int channel, volatile void* src, volatile void* dest, unsigned int ctrl);
-# 2 "startPhase.c" 2
+# 2 "phaseThree.c" 2
 # 1 "mode0.h" 1
 # 32 "mode0.h"
 typedef struct {
@@ -53,14 +53,14 @@ typedef struct {
 typedef struct {
  u16 tilemap[1024];
 } SB;
-# 3 "startPhase.c" 2
+# 3 "phaseThree.c" 2
 # 1 "tilesetOne.h" 1
 # 21 "tilesetOne.h"
 extern unsigned char tilesetOneTiles[8192];
 
 
 extern unsigned char tilesetOnePal[512];
-# 4 "startPhase.c" 2
+# 4 "phaseThree.c" 2
 # 1 "bgOne.h" 1
 
 
@@ -70,12 +70,12 @@ extern unsigned char tilesetOnePal[512];
 
 
 extern const unsigned short bgOneMap[2048];
-# 5 "startPhase.c" 2
+# 5 "phaseThree.c" 2
 # 1 "phaseOne.h" 1
 # 10 "phaseOne.h"
 void goToPhaseOne();
 void phaseOneState();
-# 6 "startPhase.c" 2
+# 6 "phaseThree.c" 2
 # 1 "gameState.h" 1
 
 
@@ -96,38 +96,12 @@ void goToLose();
 void lose();
 
 extern GameState state;
-# 7 "startPhase.c" 2
-# 1 "startPhasePlayer.h" 1
-# 9 "startPhasePlayer.h"
-void initStartPlayer();
-void initGuideSprite();
-void updateStartPlayer(int* hOff, int* vOff);
-void updateGuideSprite();
-void drawStartPlayer();
-void drawGuideSprite();
-int checkPlayerGuideCollision();
-# 8 "startPhase.c" 2
-# 1 "town.h" 1
+# 7 "phaseThree.c" 2
+# 1 "phaseOnePlayer.h" 1
 
 
 
 
-
-
-
-extern const unsigned short townMap[1024];
-# 9 "startPhase.c" 2
-# 1 "townCM.h" 1
-# 20 "townCM.h"
-extern const unsigned short townCMBitmap[32768];
-# 10 "startPhase.c" 2
-# 1 "snowtiles.h" 1
-# 21 "snowtiles.h"
-extern const unsigned char snowtilesTiles[7680];
-
-
-extern const unsigned char snowtilesPal[512];
-# 11 "startPhase.c" 2
 # 1 "sprites.h" 1
 # 10 "sprites.h"
 typedef struct {
@@ -189,37 +163,49 @@ typedef struct {
     int active;
     u8 oamIndex;
 } SPRITE;
-# 12 "startPhase.c" 2
+# 6 "phaseOnePlayer.h" 2
+# 15 "phaseOnePlayer.h"
+extern SPRITE player;
+
+unsigned char colorAt(int x, int y);
+void initPlayer();
+void updatePlayer(int* hOff, int* vOff);
+void drawPlayer();
+# 8 "phaseThree.c" 2
+# 1 "bgOneCM.h" 1
+# 20 "bgOneCM.h"
+extern const unsigned short bgOneCMBitmap[65536];
+# 9 "phaseThree.c" 2
+# 1 "phaseThree.h" 1
+# 10 "phaseThree.h"
+void goToPhaseThree();
+void phaseThreeState();
+# 10 "phaseThree.c" 2
 
 extern GameState state;
-extern int hOff, vOff;
+int hOff, vOff;
 extern int sbb;
+extern SPRITE guide;
 
-void goToStartPhase() {
+void goToPhaseThree() {
+    (*(volatile unsigned short *)0x4000000) = ((0) & 7) | (1 << (8 + (0 % 4))) | (1 << 12);
+    (*(volatile unsigned short*) 0x4000008) = ((0) << 2) | ((20) << 8) | (1 << 14);
 
+    DMANow(3, tilesetOnePal, ((unsigned short *)0x5000000), 512 / 2);
+    DMANow(3, tilesetOneTiles, &((CB*) 0x6000000)[0], 8192 / 2);
+    DMANow(3, bgOneMap, &((SB*) 0x6000000)[20], 2048);
 
-    (*(volatile unsigned short *)0x4000000) = ((0) & 7) | (1 << (8 + (1 % 4))) | (1 << 12);
-    (*(volatile unsigned short*) 0x400000A) = ((1) << 2) | ((23) << 8) | (0 << 14) | (1 << 7);
-
-    DMANow(3, snowtilesPal, ((unsigned short *)0x5000000), 512 / 2);
-    DMANow(3, snowtilesTiles, &((CB*) 0x6000000)[1], 7680 / 2);
-    DMANow(3, townMap, &((SB*) 0x6000000)[23], (2048) / 2);
-
-    initStartPlayer();
-    initGuideSprite();
-
+    initPlayer();
     hOff = 0;
     vOff = (256 - 160);
-
-    state = START_PHASE;
+    state = PHASEONE;
 }
 
-void startPhaseState() {
-    updateStartPlayer(&hOff, &vOff);
-    (*(volatile unsigned short*) 0x04000014) = hOff;
-    (*(volatile unsigned short*) 0x04000016) = vOff;
-
-    drawStartPlayer();
-    drawGuideSprite();
+void phaseThreeState() {
+    updatePlayer(&hOff, &vOff);
+    (*(volatile unsigned short*) 0x04000010) = hOff;
+    (*(volatile unsigned short*) 0x04000012) = vOff;
+    shadowOAM[guide.oamIndex].attr0 = (2<<8);
+    drawPlayer();
     DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);
 }

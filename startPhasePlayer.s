@@ -44,7 +44,7 @@ initStartPlayer:
 	str	r7, [ip, #20]
 	str	r6, [ip]
 	str	lr, [ip, #16]
-	strb	lr, [ip, #52]
+	strb	lr, [ip, #56]
 	str	lr, [ip, #44]
 	str	lr, [ip, #36]
 	str	lr, [ip, #12]
@@ -79,23 +79,24 @@ initGuideSprite:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	mov	r1, #1
-	str	lr, [sp, #-4]!
+	push	{r4, lr}
 	mov	r2, #0
-	mov	lr, #10
-	mov	r0, #16
-	mov	ip, #166
+	mov	r4, #10
+	mov	lr, #166
+	mov	ip, #30
+	mov	r0, #50
 	ldr	r3, .L8
-	strb	r1, [r3, #52]
-	str	lr, [r3, #16]
-	str	ip, [r3, #20]
-	str	r0, [r3, #24]
+	strb	r1, [r3, #56]
+	str	r4, [r3, #16]
+	str	lr, [r3, #20]
+	str	ip, [r3, #24]
 	str	r0, [r3, #28]
 	str	r1, [r3, #48]
 	str	r2, [r3, #44]
 	str	r2, [r3, #40]
 	str	r2, [r3, #36]
 	str	r2, [r3, #12]
-	ldr	lr, [sp], #4
+	pop	{r4, lr}
 	bx	lr
 .L9:
 	.align	2
@@ -343,7 +344,7 @@ drawStartPlayer:
 	add	r1, r1, ip, lsl #2
 	ldr	r1, [r1, #4]
 	ldr	lr, .L59+20
-	ldrb	r0, [r0, #52]	@ zero_extendqisi2
+	ldrb	r0, [r0, #56]	@ zero_extendqisi2
 	add	r1, r1, #480
 	lsl	r1, r1, #22
 	add	ip, lr, r0, lsl #3
@@ -388,7 +389,7 @@ drawGuideSprite:
 	ldr	r3, [r1, #16]
 	ldr	r0, [r0]
 	sub	r3, r3, r0
-	ldrb	r1, [r1, #52]	@ zero_extendqisi2
+	ldrb	r1, [r1, #56]	@ zero_extendqisi2
 	ldr	r0, .L63+12
 	lsl	r3, r3, #23
 	lsr	r3, r3, #23
@@ -446,8 +447,8 @@ checkPlayerGuideCollision:
 	.word	startPlayer
 	.word	collision
 	.size	checkPlayerGuideCollision, .-checkPlayerGuideCollision
-	.comm	guide,56,4
-	.comm	startPlayer,56,4
+	.comm	guide,60,4
+	.comm	startPlayer,60,4
 	.global	startHikerFrames
 	.global	startHikerFrame
 	.global	startHikerFrameCounter

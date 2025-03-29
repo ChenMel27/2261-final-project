@@ -56,6 +56,8 @@ snowtilesPal:
 	.ascii	"\000\036\000\036\000\036\000\036\000\036\000\036\000"
 	.ascii	"\037\000\037\000\037\000\037\000\037\000\037\000\037"
 	.ascii	"\000\037\000"
+	.data
+	.align	2
 	.type	snowtilesTiles, %object
 	.size	snowtilesTiles, 7680
 snowtilesTiles:

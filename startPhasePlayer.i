@@ -53,6 +53,7 @@ void DMANow(int channel, volatile void* src, volatile void* dest, unsigned int c
 void initStartPlayer();
 void initGuideSprite();
 void updateStartPlayer(int* hOff, int* vOff);
+void updateGuideSprite();
 void drawStartPlayer();
 void drawGuideSprite();
 int checkPlayerGuideCollision();
@@ -139,6 +140,7 @@ typedef struct {
     int isAnimating;
     int currentFrame;
     int numFrames;
+    int active;
     u8 oamIndex;
 } SPRITE;
 # 7 "startPhasePlayer.c" 2
@@ -182,11 +184,11 @@ void initStartPlayer() {
 }
 
 void initGuideSprite() {
-
     guide.worldX = 10;
     guide.worldY = 166;
-    guide.width = 16;
-    guide.height = 16;
+    guide.width = 30;
+    guide.height = 50;
+
     guide.oamIndex = 1;
     guide.numFrames = 1;
     guide.currentFrame = 0;
@@ -197,8 +199,6 @@ void initGuideSprite() {
 
 void updateStartPlayer(int* hOff, int* vOff) {
     startPlayer.isAnimating = 0;
-
-
     int speed = 1;
 
 
@@ -206,7 +206,6 @@ void updateStartPlayer(int* hOff, int* vOff) {
     int rightX = startPlayer.worldX + startPlayer.width - 1;
     int topY = startPlayer.worldY;
     int bottomY = startPlayer.worldY + startPlayer.height - 1;
-
 
     if ((~(buttons) & ((1<<5)))) {
         startPlayer.isAnimating = 1;
@@ -218,7 +217,6 @@ void updateStartPlayer(int* hOff, int* vOff) {
         }
     }
 
-
     if ((~(buttons) & ((1<<4)))) {
         startPlayer.isAnimating = 1;
         int newX = startPlayer.worldX + speed;
@@ -229,7 +227,6 @@ void updateStartPlayer(int* hOff, int* vOff) {
         }
     }
 
-
     if ((~(buttons) & ((1<<6)))) {
         startPlayer.isAnimating = 1;
         int newY = startPlayer.worldY - speed;
@@ -239,7 +236,6 @@ void updateStartPlayer(int* hOff, int* vOff) {
             startPlayer.worldY = newY;
         }
     }
-
 
     if ((~(buttons) & ((1<<7)))) {
         startPlayer.isAnimating = 1;
@@ -277,7 +273,6 @@ void updateStartPlayer(int* hOff, int* vOff) {
 
 void updateGuideSprite() {
 
-
 }
 
 void drawStartPlayer() {
@@ -293,10 +288,8 @@ void drawGuideSprite() {
     int screenY = guide.worldY - vOff;
     shadowOAM[guide.oamIndex].attr0 = ((screenY) & 0xFF) | (0<<8) | (0<<13) | (2<<14);
     shadowOAM[guide.oamIndex].attr1 = ((screenX) & 0x1FF) | (3<<14) | (1<<12);
-
     shadowOAM[guide.oamIndex].attr2 = ((((14) * (32) + (24))) & 0x3FF);
 }
-
 
 
 int checkPlayerGuideCollision() {

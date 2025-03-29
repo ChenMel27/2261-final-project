@@ -18,10 +18,10 @@
 #define GRIT_SNOWTILES_H
 
 #define snowtilesTilesLen 7680
-extern const unsigned char snowtilesTiles[7680];
+extern unsigned char snowtilesTiles[7680];
 
 #define snowtilesPalLen 512
-extern const unsigned char snowtilesPal[512];
+extern unsigned char snowtilesPal[512];
 
 #endif // GRIT_SNOWTILES_H
 

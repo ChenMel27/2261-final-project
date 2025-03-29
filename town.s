@@ -11,7 +11,7 @@
 	.file	"town.c"
 	.text
 	.global	townMap
-	.section	.rodata
+	.data
 	.align	2
 	.type	townMap, %object
 	.size	townMap, 2048
