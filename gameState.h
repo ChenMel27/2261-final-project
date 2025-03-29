@@ -2,6 +2,7 @@
 #define GAMESTATE_H
 
 typedef enum {
+    SPLASH,
     START_PHASE,  // initial start phase screen (town/background with player)
     DIALOGUE,     // dialogue/instruction pages (Mode 4)
     PHASEONE,     // gameplay phase one

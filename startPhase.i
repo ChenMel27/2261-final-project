@@ -115,7 +115,7 @@ int checkPlayerGuideCollision();
 
 
 
-extern const unsigned short townMap[1024];
+extern unsigned short townMap[1024];
 # 9 "startPhase.c" 2
 # 1 "townCM.h" 1
 # 20 "townCM.h"
@@ -123,10 +123,10 @@ extern const unsigned short townCMBitmap[32768];
 # 10 "startPhase.c" 2
 # 1 "snowtiles.h" 1
 # 21 "snowtiles.h"
-extern const unsigned char snowtilesTiles[7680];
+extern unsigned char snowtilesTiles[7680];
 
 
-extern const unsigned char snowtilesPal[512];
+extern unsigned char snowtilesPal[512];
 # 11 "startPhase.c" 2
 # 1 "sprites.h" 1
 # 10 "sprites.h"

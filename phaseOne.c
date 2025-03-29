@@ -19,7 +19,7 @@ void goToPhaseOne() {
 
     DMANow(3, tilesetOnePal, BG_PALETTE, tilesetOnePalLen / 2);
     DMANow(3, tilesetOneTiles, &CHARBLOCK[0], tilesetOneTilesLen / 2);
-    DMANow(3, bgOneMap, &SCREENBLOCK[20], 2048);
+    DMANow(3, bgOneMap, &SCREENBLOCK[20], 4096);
 
     initPlayer();
     hOff = 0;

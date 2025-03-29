@@ -1,16 +1,16 @@
 #include "gba.h"
 #include "mode4.h"
-#include "start.h"
+#include "startInstructions.h"
 #include "phaseOne.h"
 
 int startPage = 0;
 
-void goToStart() {
+void goToStartInstructions() {
     REG_DISPCTL = MODE(4) | BG_ENABLE(2) | DISP_BACKBUFFER;
     startPage = 0;
 }
 
-void drawDialouge() {
+void drawStartInstructionsDialouge() {
     waitForVBlank();
     fillScreen4(0);
 

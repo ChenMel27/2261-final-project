@@ -43,13 +43,13 @@ goToPhaseOne:
 	mov	r0, #3
 	ldr	r2, .L4+12
 	ldr	r1, .L4+16
-	mov	r3, #2048
+	mov	r3, #4096
 	mov	lr, pc
 	bx	r4
 	ldr	r3, .L4+20
 	mov	lr, pc
 	bx	r3
-	mov	r2, #2
+	mov	r2, #3
 	mov	lr, #0
 	mov	r0, #96
 	ldr	r3, .L4+24

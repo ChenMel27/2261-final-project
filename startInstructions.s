@@ -8,16 +8,16 @@
 	.eabi_attribute 30, 2
 	.eabi_attribute 34, 0
 	.eabi_attribute 18, 4
-	.file	"start.c"
+	.file	"startInstructions.c"
 	.text
 	.align	2
-	.global	goToStart
+	.global	goToStartInstructions
 	.arch armv4t
 	.syntax unified
 	.arm
 	.fpu softvfp
-	.type	goToStart, %function
-goToStart:
+	.type	goToStartInstructions, %function
+goToStartInstructions:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
@@ -34,7 +34,7 @@ goToStart:
 .L3:
 	.word	1044
 	.word	.LANCHOR0
-	.size	goToStart, .-goToStart
+	.size	goToStartInstructions, .-goToStartInstructions
 	.section	.rodata.str1.4,"aMS",%progbits,1
 	.align	2
 .LC0:
@@ -68,12 +68,12 @@ goToStart:
 	.ascii	"Let's begin.\000"
 	.text
 	.align	2
-	.global	drawDialouge
+	.global	drawStartInstructionsDialouge
 	.syntax unified
 	.arm
 	.fpu softvfp
-	.type	drawDialouge, %function
-drawDialouge:
+	.type	drawStartInstructionsDialouge, %function
+drawStartInstructionsDialouge:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
@@ -229,7 +229,7 @@ drawDialouge:
 	.word	.LC8
 	.word	.LC9
 	.word	goToPhaseOne
-	.size	drawDialouge, .-drawDialouge
+	.size	drawStartInstructionsDialouge, .-drawStartInstructionsDialouge
 	.global	startPage
 	.bss
 	.align	2

@@ -81,6 +81,7 @@ void phaseOneState();
 
 
 typedef enum {
+    SPLASH,
     START_PHASE,
     DIALOGUE,
     PHASEONE,
@@ -193,7 +194,7 @@ void goToPhaseOne() {
 
     DMANow(3, tilesetOnePal, ((unsigned short *)0x5000000), 512 / 2);
     DMANow(3, tilesetOneTiles, &((CB*) 0x6000000)[0], 8192 / 2);
-    DMANow(3, bgOneMap, &((SB*) 0x6000000)[20], 2048);
+    DMANow(3, bgOneMap, &((SB*) 0x6000000)[20], 4096);
 
     initPlayer();
     hOff = 0;

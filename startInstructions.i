@@ -1,7 +1,7 @@
-# 1 "start.c"
+# 1 "startInstructions.c"
 # 1 "<built-in>"
 # 1 "<command-line>"
-# 1 "start.c"
+# 1 "startInstructions.c"
 # 1 "gba.h" 1
 
 
@@ -41,7 +41,7 @@ typedef volatile struct {
 } DMAChannel;
 # 103 "gba.h"
 void DMANow(int channel, volatile void* src, volatile void* dest, unsigned int ctrl);
-# 2 "start.c" 2
+# 2 "startInstructions.c" 2
 # 1 "mode4.h" 1
 # 9 "mode4.h"
 void flipPages();
@@ -53,30 +53,30 @@ void drawFullscreenImage4(const u16* image);
 
 void drawChar4(int x, int y, char ch, u8 colorIndex);
 void drawString4(int x, int y, char* str, u8 colorIndex);
-# 3 "start.c" 2
-# 1 "start.h" 1
+# 3 "startInstructions.c" 2
+# 1 "startInstructions.h" 1
 
 
 
-void goToStart();
-void drawDialouge();
+void goToStartInstructions();
+void drawStartInstructionsDialouge();
 
 int startPage;
-# 4 "start.c" 2
+# 4 "startInstructions.c" 2
 # 1 "phaseOne.h" 1
 # 10 "phaseOne.h"
 void goToPhaseOne();
 void phaseOneState();
-# 5 "start.c" 2
+# 5 "startInstructions.c" 2
 
 int startPage = 0;
 
-void goToStart() {
+void goToStartInstructions() {
     (*(volatile unsigned short *)0x4000000) = ((4) & 7) | (1 << (8 + (2 % 4))) | (1 << 4);
     startPage = 0;
 }
 
-void drawDialouge() {
+void drawStartInstructionsDialouge() {
     waitForVBlank();
     fillScreen4(0);
 

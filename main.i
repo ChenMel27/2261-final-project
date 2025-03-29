@@ -92,6 +92,7 @@ extern unsigned char tilesetOnePal[512];
 
 
 typedef enum {
+    SPLASH,
     START_PHASE,
     DIALOGUE,
     PHASEONE,
@@ -195,12 +196,12 @@ void drawPlayer();
 void goToStartPhase();
 void startPhaseState();
 # 11 "main.c" 2
-# 1 "start.h" 1
+# 1 "startInstructions.h" 1
 
 
 
-void goToStart();
-void drawDialouge();
+void goToStartInstructions();
+void drawStartInstructionsDialouge();
 
 int startPage;
 # 12 "main.c" 2
@@ -214,6 +215,13 @@ void drawStartPlayer();
 void drawGuideSprite();
 int checkPlayerGuideCollision();
 # 13 "main.c" 2
+# 1 "splashScreen.h" 1
+# 21 "splashScreen.h"
+extern const unsigned short splashScreenBitmap[19200];
+
+
+extern const unsigned short splashScreenPal[256];
+# 14 "main.c" 2
 
 unsigned short buttons, oldButtons;
 GameState state;
@@ -226,6 +234,9 @@ int main() {
         buttons = (*(volatile unsigned short *)0x04000130);
 
         switch(state) {
+            case SPLASH:
+                splashScreen();
+                break;
             case START_PHASE:
 
                 startPhaseState();
@@ -235,12 +246,12 @@ int main() {
 
                 if (checkPlayerGuideCollision()) {
 
-                    goToStart();
+                    goToStartInstructions();
                     state = DIALOGUE;
                 }
                 break;
             case DIALOGUE:
-                drawDialouge();
+                drawStartInstructionsDialouge();
                 break;
             case PHASEONE:
 
@@ -268,7 +279,7 @@ int main() {
 
 void initialize() {
     mgba_open();
-    goToStartPhase();
+    goToSplashScreen();
 }
 
 void goToPause() {
@@ -280,6 +291,21 @@ void pause() {
     (*(volatile unsigned short *)0x4000000) = ((4) & 7) | (1 << (8 + (2 % 4)));
     fillScreen4(0);
 
+
+    if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) {
+        goToStartPhase();
+        state = START_PHASE;
+    }
+}
+
+void goToSplashScreen() {
+    state = SPLASH;
+}
+
+void splashScreen() {
+    (*(volatile unsigned short *)0x4000000) = ((4) & 7) | (1 << (8 + (2 % 4)));
+    DMANow(3, (volatile void*)splashScreenPal, ((unsigned short *)0x5000000), 256 | (1 << 31));
+    drawFullscreenImage4(splashScreenBitmap);
 
     if ((!(~(oldButtons) & ((1<<3))) && (~(buttons) & ((1<<3))))) {
         goToStartPhase();

@@ -24,6 +24,7 @@
         "hiker.h": "c",
         "startphaseplayer.h": "c",
         "phaseoneplayer.h": "c",
-        "bgone.h": "c"
+        "bgone.h": "c",
+        "startinstructions.h": "c"
     }
 }
